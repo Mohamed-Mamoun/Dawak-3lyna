@@ -1,6 +1,8 @@
+import 'package:dawak_3lyna/modules/Signup/Signup_Screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/cubit/cubit.dart';
 import 'package:dawak_3lyna/shared/cubit/states.dart';
+import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,8 +67,8 @@ class LoginScreen extends StatelessWidget {
                           suffixPressed: () {
                             AppCubit.get(context).changePassword();
                           },
-                          validate: (String valaue) {
-                            if (valaue.isEmpty) {
+                          validate: (String value) {
+                            if (value.isEmpty) {
                               return 'password must not be empty';
                             }
                           },
@@ -75,6 +77,7 @@ class LoginScreen extends StatelessWidget {
                           height: 20.0,
                         ),
                         defaultButton(
+                          background: myColor,
                           radius: 15.0,
                           function: () {
                             if (formKey.currentState.validate()) {}
@@ -94,7 +97,9 @@ class LoginScreen extends StatelessWidget {
                               'Don\'t have an account?',
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                navigatTo(context, SignupScreen());
+                              },
                               child: Text(
                                 'REGISTER NOW',
                               ),

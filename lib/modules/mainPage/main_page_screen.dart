@@ -42,7 +42,7 @@ class MainPageScreen extends StatelessWidget {
                     LoginScreen(),
                   );
                 },
-                text: 'Doner',
+                text: 'Donor',
               ),
               const SizedBox(
                 height: 20.0,
