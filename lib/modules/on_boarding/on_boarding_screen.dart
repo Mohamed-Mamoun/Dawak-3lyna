@@ -1,5 +1,9 @@
+import 'package:dawak_3lyna/modules/login/login_screen.dart';
+import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
+import 'package:dawak_3lyna/shared/components/components.dart';
+import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class BoardingModal {
   final String image;
@@ -14,6 +18,8 @@ class BoardingModal {
 }
 
 class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({Key key}) : super(key: key);
+
   @override
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 }
@@ -23,44 +29,52 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   List<BoardingModal> boarding = [
     BoardingModal(
-      image: 'asset/images/onboarding_1.png',
-      title: 'Explore',
+      image: 'images/img1.jpg',
+      title: 'Heathcare',
       body:
-          'Choose Whatever the Product you wish for with the easiest way possible',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
-      image: 'asset/images/onboarding_1.png',
-      title: 'Shipping',
+      image: 'images/img2.jpg',
+      title: 'Medicine',
       body:
-          'Yor Order will be shipped to you as fast as possible by our carrier',
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
-      image: 'asset/images/onboarding_1.png',
-      title: 'Make the Payment',
-      body: 'Pay with the safest way possible either by cash or credit cards',
+      image: 'images/img3.jpg',
+      title: 'Online Consultation',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
   ];
 
   bool isLast = false;
-  void submit() {
-    CacheHelper.saveData(
-      key: 'onBoarding',
-      value: true,
-    ).then((value) {
-      if (value) {
-        navigatAndFinish(context, ShopLoginScreen());
-      }
-    });
-  }
+  // void submit() {
+  //   CacheHelper.saveData(
+  //     key: 'onBoarding',
+  //     value: true,
+  //   ).then((value) {
+  //     if (value) {
+  //       navigatAndFinish(context, ShopLoginScreen());
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
         actions: [
-          TextButton(
-            onPressed: submit,
-            child: Text('SKIP'),
+          defaultTextButton(
+            function: () {
+              navigatAndFinish(
+                context,
+                const MainPageScreen(),
+              );
+            },
+            text: 'SKIP',
           ),
         ],
       ),
@@ -71,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Expanded(
               child: PageView.builder(
                 controller: boardController,
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) =>
                     buildBoardingItem(boarding[index]),
                 itemCount: boarding.length,
@@ -90,7 +104,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40.0,
             ),
             Row(
@@ -98,7 +112,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 SmoothPageIndicator(
                   controller: boardController,
                   count: boarding.length,
-                  effect: ExpandingDotsEffect(
+                  effect: const ExpandingDotsEffect(
                     activeDotColor: myColor,
                     dotColor: Colors.grey,
                     dotHeight: 10,
@@ -107,19 +121,24 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     spacing: 5.0,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 FloatingActionButton(
                   onPressed: () {
                     if (isLast) {
-                      submit();
+                      navigatAndFinish(
+                        context,
+                        const MainPageScreen(),
+                      );
                     } else {
                       boardController.nextPage(
-                        duration: Duration(milliseconds: 800),
+                        duration: const Duration(milliseconds: 800),
                         curve: Curves.decelerate,
                       );
                     }
                   },
-                  child: Icon(Icons.arrow_forward_ios),
+                  child: const Icon(
+                    Icons.arrow_forward_ios,
+                  ),
                 ),
               ],
             ),
@@ -142,17 +161,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
           Text(
             '${modal.title}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15.0,
           ),
           Text(
             '${modal.body}',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.bold,
             ),
