@@ -8,30 +8,30 @@ class MainPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // appBar: AppBar(),
+       appBar: AppBar(),
       body: SafeArea(
-              child: Center(
+        child: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50.0,
               ),
-              CircleAvatar(
+              const CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/medical-logo.jpg'),
                 radius: 70,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70.0,
               ),
-              Text(
+              const Text(
                 'Chooes Type',
                 style: TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               defaultButton(
@@ -44,7 +44,7 @@ class MainPageScreen extends StatelessWidget {
                 },
                 text: 'Doner',
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               defaultButton(

@@ -1,4 +1,5 @@
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
+import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myColor,
       ),
-      home: const MainPageScreen(),
+      home: const OnBoardingScreen(),
     );
   }
 }
