@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // Button
 Widget defaultButton({
   double width = double.infinity,
-  Color background = myColor,
+  Color background= myColor,
   bool isUpperCase = true,
   double radius = 0.0,
   @required Function function,
@@ -19,6 +19,7 @@ Widget defaultButton({
           isUpperCase ? text.toUpperCase() : text,
           style: TextStyle(
             color: Colors.white,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -45,13 +46,14 @@ Widget defaultFormField({
   Function suffixPressed,
   bool obscureText,
   double radius = 15.0,
+  Color fill
 }) =>
     TextFormField(
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        prefixIcon: Icon(prefix),
+        prefixIcon: Icon(prefix,color: Colors.black87),
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: suffixPressed,
