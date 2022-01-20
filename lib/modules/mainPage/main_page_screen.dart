@@ -42,7 +42,7 @@ class MainPageScreen extends StatelessWidget {
                     LoginScreen(),
                   );
                 },
-                text: 'Donor',
+                text: 'patient',
               ),
               const SizedBox(
                 height: 20.0,
@@ -50,7 +50,7 @@ class MainPageScreen extends StatelessWidget {
               defaultButton(
                 width: 200,
                 function: () {},
-                text: 'patient',
+                text: 'doner',
               ),
             ],
           ),
