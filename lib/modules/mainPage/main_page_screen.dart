@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
 import 'package:dawak_3lyna/modules/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ class MainPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(),
+      appBar: AppBar(),
       body: SafeArea(
         child: Center(
           child: Column(
@@ -49,7 +50,12 @@ class MainPageScreen extends StatelessWidget {
               ),
               defaultButton(
                 width: 200,
-                function: () {},
+                function: () {
+                  navigatTo(
+                    context,
+                    DonerScreen(),
+                  );
+                },
                 text: 'doner',
               ),
             ],
