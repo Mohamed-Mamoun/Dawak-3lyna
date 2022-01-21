@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultFormField(
                           controller: emailController,
-                          hint: 'Email',
+                          hint: 'Email / Phone',
                           type: TextInputType.emailAddress,
                           prefix: Icons.email_outlined,
                           isReadOnly: false,
