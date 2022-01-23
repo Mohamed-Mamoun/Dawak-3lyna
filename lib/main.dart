@@ -1,3 +1,5 @@
+import 'package:dawak_3lyna/modules/Patient/Botom%20nav%20bar/bottomNav.dart';
+import 'package:dawak_3lyna/modules/Patient/Home/Patient_Home.dart';
 import 'package:dawak_3lyna/modules/Signup/Signup_Screen.dart';
 import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
 import 'package:dawak_3lyna/modules/login/login_screen.dart';
