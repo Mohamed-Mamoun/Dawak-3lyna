@@ -31,8 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     BoardingModal(
       image: 'images/img1.jpg',
       title: 'Heathcare',
-      body:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
       image: 'images/img2.jpg',

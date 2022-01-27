@@ -1,4 +1,5 @@
 import 'package:dawak_3lyna/modules/Patient/Home/Patient_Home.dart';
+import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
 import 'package:dawak_3lyna/modules/Patient/Profile/Patient_Profile.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -13,22 +14,21 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   int selectedindex=0;
-  List screens = [const Home(), const Profile()];
-  List<Icon> items = [
-    const Icon(Icons.home, size: 30, color: Colors.white),
-    const Icon(Icons.account_circle, size: 30, color: Colors.white),
+  List screens = [const Home(), const Profile(), NewRequest()];
+  List<BottomNavigationBarItem> items = [
+    BottomNavigationBarItem(icon: const Icon(Icons.home, size: 30, color: myColor), label: 'Home'),
+    BottomNavigationBarItem(icon: const Icon(Icons.account_circle, size: 30, color: myColor),label: 'Profile'),
+    BottomNavigationBarItem(icon: const Icon(Icons.add, size: 40, color: myColor),label: 'New Request')
   ];
+   
   @override
   Widget build(BuildContext context) {
+    assert(screens.length == items.length);
     return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        index: selectedindex,
+      bottomNavigationBar: BottomNavigationBar(
         items: items,
-        height: 55,
-        color: myColor,
-        animationCurve: Curves.fastLinearToSlowEaseIn,
-        buttonBackgroundColor: myColor,
-        backgroundColor: Colors.transparent,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: selectedindex,
         onTap: (index){
           setState(() {
             selectedindex = index;
