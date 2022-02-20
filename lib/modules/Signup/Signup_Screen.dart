@@ -1,3 +1,5 @@
+import 'package:dawak_3lyna/modules/Signup/cubit/signup_cubit.dart';
+import 'package:dawak_3lyna/modules/Verify%20Email%20Page/verifyEmail.dart';
 import 'package:dawak_3lyna/modules/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/cubit/cubit.dart';
@@ -30,8 +32,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppStates>(
+      create: (BuildContext context) => SignupCubit(),
+      child: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
@@ -198,11 +200,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fill: Colors.white,
                                 controller: passwordcontroller,
                                 type: TextInputType.visiblePassword,
-                                isPassword: AppCubit.get(context).isPassword,
-                                suffix: AppCubit.get(context).suffix,
-                                suffixPressed: () {
-                                  AppCubit.get(context).changePassword();
-                                },
+                               
                                 prefix: Icons.lock,
                                 validate: (String value) {
                                   if (value.isEmpty) {
@@ -217,11 +215,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fill: Colors.white,
                                 controller: password2_controller,
                                 type: TextInputType.visiblePassword,
-                                isPassword: AppCubit.get(context).isPassword,
-                                suffix: AppCubit.get(context).suffix,
-                                suffixPressed: () {
-                                  AppCubit.get(context).changePassword();
-                                },
+                              
                                 prefix: Icons.lock,
                                 validate: (String value) {
                                   if (value.isEmpty) {
@@ -235,8 +229,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               height: 20,
                             ),
                             defaultButton(
-                                function: () {
-                                   if (formKey.currentState.validate()) {}
+                                function: () async{
+                                   await  SignupCubit().signUp_User(emailcontroller.text.trim(), passwordcontroller.text.trim());
+                                   navigatAndFinish(context, VerifyEmail());
+                                   if (formKey.currentState.validate()) {
+                                  
+                                   }
                                 }, text: 'SignUp', radius: 10)
                           ],
                         )),
