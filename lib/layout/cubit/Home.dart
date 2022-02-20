@@ -6,7 +6,7 @@ import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
-part 'home_cubit_state.dart';
+part 'HomeSate.dart';
 
 class HomeCubitCubit extends Cubit<HomeCubitState> {
   HomeCubitCubit() : super(HomeCubitInitial());

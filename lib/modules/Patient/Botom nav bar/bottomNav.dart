@@ -1,9 +1,4 @@
-import 'package:dawak_3lyna/layout/cubit/home_cubit_cubit.dart';
-import 'package:dawak_3lyna/modules/Patient/Home/Patient_Home.dart';
-import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
-import 'package:dawak_3lyna/modules/Patient/Profile/Patient_Profile.dart';
-import 'package:dawak_3lyna/shared/cubit/cubit.dart';
-import 'package:dawak_3lyna/shared/styles/colors.dart';
+import 'package:dawak_3lyna/layout/cubit/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
