@@ -1,11 +1,12 @@
+import 'package:conditional_builder/conditional_builder.dart';
 import 'package:dawak_3lyna/modules/Signup/Signup_Screen.dart';
+import 'package:dawak_3lyna/modules/login/cubit/cubit.dart';
+import 'package:dawak_3lyna/modules/login/cubit/states.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
-import 'package:dawak_3lyna/shared/cubit/cubit.dart';
-import 'package:dawak_3lyna/shared/cubit/states.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -15,14 +16,24 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppStates>(
-        listener: (context, state) {},
+      create: (BuildContext context) => LoginCubit(),
+      child: BlocConsumer<LoginCubit, LoginStates>(
+        listener: (context, state) {
+          if (state is LoginErrorState) {
+            print('erro');
+            showToast(text: state.error.toString(), state: ToastStates.ERROR);
+          }
+          if (state is LoginSuccessState) {
+            // print(state.uId);
+            showToast(text: state.toString(), state: ToastStates.SUCCESS);
+          }
+        },
         builder: (context, state) {
           return Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
-              // 
-             // backgroundColor: Colors.white,
+              backgroundColor: Colors.white,
+              elevation: 0.0,
             ),
             body: Center(
               child: SingleChildScrollView(
@@ -62,10 +73,10 @@ class LoginScreen extends StatelessWidget {
                           hint: 'Password',
                           type: TextInputType.visiblePassword,
                           prefix: Icons.lock,
-                          isPassword: AppCubit.get(context).isPassword,
-                          suffix: AppCubit.get(context).suffix,
+                          isPassword: LoginCubit.get(context).isPasswordShow,
+                          suffix: LoginCubit.get(context).suffix,
                           suffixPressed: () {
-                            AppCubit.get(context).changePassword();
+                            LoginCubit.get(context).changePasswordVisib();
                           },
                           validate: (String value) {
                             if (value.isEmpty) {
@@ -76,13 +87,23 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20.0,
                         ),
-                        defaultButton(
-                          background: myColor,
-                          radius: 15.0,
-                          function: () {
-                            if (formKey.currentState.validate()) {}
-                          },
-                          text: 'login',
+                        ConditionalBuilder(
+                          condition: state is! LoginLoadingState,
+                          builder: (context) => defaultButton(
+                            background: myColor,
+                            radius: 15.0,
+                            function: () {
+                              if (formKey.currentState.validate()) {
+                                LoginCubit.get(context).userLogin(
+                                    email: emailController.text,
+                                    password: passwordController.text);
+                              }
+                            },
+                            text: 'login',
+                          ),
+                          fallback: (context) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
                         SizedBox(
                           height: 15.0,

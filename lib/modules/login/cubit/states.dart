@@ -1,9 +1,19 @@
-abstract class AuthStates {}
+abstract class LoginStates {}
 
-class AuthInitialState extends AuthStates {}
+class LoginInitialState extends LoginStates {}
 
-class AuthLoginLoadingState extends AuthStates{}
+class LoginLoadingState extends LoginStates {}
 
-class AuthLoginSuccessState extends AuthStates{}
+class LoginSuccessState extends LoginStates {
+  final String uId;
 
-class AuthLoginErrorState extends AuthStates{}
+  LoginSuccessState(this.uId);
+}
+
+class LoginErrorState extends LoginStates {
+  final String error;
+
+  LoginErrorState(this.error);
+}
+
+class ChangePasswordVisiabState extends LoginStates {}
