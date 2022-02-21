@@ -3,10 +3,12 @@ import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+
 void main() async{
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+   //Bloc.observer = MyBlocObserver();
+    runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
