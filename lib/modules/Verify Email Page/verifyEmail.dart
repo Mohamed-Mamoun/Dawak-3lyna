@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/modules/Patient/Botom%20nav%20bar/bottomNav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +13,6 @@ class VerifyEmail extends StatefulWidget {
 }
 
 class _VerifyEmailState extends State<VerifyEmail> {
-
   bool isEmailVerified = false;
   bool canresent = false;
   Timer timer;
@@ -24,23 +24,25 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
     if (!isEmailVerified) {
       sendVerification();
-      timer = Timer.periodic(const Duration(seconds: 3), (_) => checkEmailverified(),
-  
+      timer = Timer.periodic(
+        const Duration(seconds: 3),
+        (_) => checkEmailverified(),
       );
     }
   }
+
   @override
   void dispose() {
     if (isEmailVerified = true) timer?.cancel();
     super.dispose();
-  } 
+  }
 
   Future sendVerification() async {
     await FirebaseAuth.instance.currentUser.sendEmailVerification();
     setState(() {
-      canresent =false;
+      canresent = false;
     });
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 5));
     setState(() {
       canresent = true;
     });
@@ -54,34 +56,30 @@ class _VerifyEmailState extends State<VerifyEmail> {
     if (isEmailVerified) timer?.cancel();
   }
 
-  
-
-  
   @override
-  Widget build(BuildContext context)  => isEmailVerified
-        ? const NavBar()
-        : Scaffold(
-            appBar: AppBar(
-              title: const Text('Verify Email'),
-            ),
-            body: Container(
-              margin: EdgeInsets.symmetric(vertical: 250, horizontal: 11),
-              child: Column(
-                children: [
-                  Text('A verification email has been sent to your email', style: TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.bold
-                  ),),
-                  const SizedBox(height: 15,),
-
-                  defaultButton(
+  Widget build(BuildContext context) => isEmailVerified
+      ? DonerScreen()
+      : Scaffold(
+          appBar: AppBar(
+            title: const Text('Verify Email'),
+          ),
+          body: Container(
+            margin: const EdgeInsets.symmetric(vertical: 250, horizontal: 11),
+            child: Column(
+              children: [
+                const Text(
+                  'A verification email has been sent to your email',
+                  style:  TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                defaultButton(
                     radius: 8,
                     text: 'Resent Email',
-                    function: () => canresent? sendVerification() : null
-                  )
-                  
-                ],
-              ),
+                    function: () => canresent ? sendVerification() : null)
+              ],
             ),
-          );
-  
+          ),
+        );
 }

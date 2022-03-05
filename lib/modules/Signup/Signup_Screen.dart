@@ -22,13 +22,12 @@ class _SignupScreenState extends State<SignupScreen> {
   var emailcontroller = TextEditingController();
   var passwordcontroller = TextEditingController();
   var password2_controller = TextEditingController();
-  int _value = 1;
+  var _value = 1;
+  var genderValue;
 
- List lisItems = [
-   'Khartoum', 'Omdourman', 'Bahri'
- ];
+  List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
 
- String valuechoose;
+  String valuechoose;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -42,9 +41,8 @@ class _SignupScreenState extends State<SignupScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                   const Padding(
-                      padding:  EdgeInsets.only(
-                         top: 80, bottom: 10, right: 260),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 80, bottom: 15, right: 280),
                       child: Text(
                         'SignUp',
                         style: TextStyle(
@@ -68,17 +66,17 @@ class _SignupScreenState extends State<SignupScreen> {
                                     return 'Please Enter your Name';
                                   }
                                 }),
-                           const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
                               height: 60,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(12)
-                                ),
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(12)),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   const Text(
                                     'Gender:',
@@ -120,7 +118,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                 ],
                               ),
                             ),
-                          const  SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             defaultFormField(
@@ -134,51 +132,34 @@ class _SignupScreenState extends State<SignupScreen> {
                                     return 'Please Enter your Phone Number';
                                   }
                                 }),
-                           const SizedBox(
-                              height: 10,
-                            ),
-                             defaultFormField(
-                                hint: 'Age',
-                                fill: Colors.white,
-                                controller: agecontroller,
-                                type: TextInputType.number,
-                                prefix: Icons.person_outline,
-                                validate: (String value) {
-                                  if (value.isEmpty) {
-                                    return 'Please Enter your Age';
-                                  }
-                                }),
-                         
-                          const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Container(
-                               height: 60,
+                              height: 60,
                               decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey),
-                                borderRadius: BorderRadius.circular(12)
-                              ),
+                                  border: Border.all(color: Colors.grey),
+                                  borderRadius: BorderRadius.circular(12)),
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 5),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
                                 child: DropdownButton(
-                                      items: lisItems.map((itemvalue){
-                                  return DropdownMenuItem(
-                                    value: itemvalue,
-                                    child: Text(itemvalue));
-                                }).toList(),
-                                  isExpanded: true,
-                                  hint: Text(' Select Your City'),
-                           
-                                value: valuechoose,
-                                onChanged: (newValue){
-                                 setState(() {
-                                   valuechoose = newValue;
-                                 });
-                           
-                                }),
+                                    items: lisItems.map((itemvalue) {
+                                      return DropdownMenuItem(
+                                          value: itemvalue,
+                                          child: Text(itemvalue));
+                                    }).toList(),
+                                    isExpanded: true,
+                                    hint: Text(' Select Your City'),
+                                    value: valuechoose,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        valuechoose = newValue;
+                                      });
+                                    }),
                               ),
                             ),
-                              const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             defaultFormField(
@@ -192,7 +173,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                     return 'Please Enter your Email';
                                   }
                                 }),
-                           const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             defaultFormField(
@@ -200,14 +181,13 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fill: Colors.white,
                                 controller: passwordcontroller,
                                 type: TextInputType.visiblePassword,
-                               
                                 prefix: Icons.lock,
                                 validate: (String value) {
                                   if (value.isEmpty) {
                                     return 'Please Enter your Password';
                                   }
                                 }),
-                          const SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             defaultFormField(
@@ -215,33 +195,44 @@ class _SignupScreenState extends State<SignupScreen> {
                                 fill: Colors.white,
                                 controller: password2_controller,
                                 type: TextInputType.visiblePassword,
-                              
                                 prefix: Icons.lock,
                                 validate: (String value) {
                                   if (value.isEmpty) {
                                     return 'Please Confirm Your Password';
                                   }
-                                  if (value != passwordcontroller) {
-                                    return 'Password Dont match';
-                                  }
                                 }),
-                           const SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             defaultButton(
-                                function: () async{
-                                   await  SignupCubit().signUp_User(emailcontroller.text.trim(), passwordcontroller.text.trim());
-                                   navigatAndFinish(context, VerifyEmail());
-                                   if (formKey.currentState.validate()) {
-                                  
-                                   }
-                                }, text: 'SignUp', radius: 10)
+                                function: () async {
+                                  if (formKey.currentState.validate()) {
+                                    if (_value == 1) {
+                                      genderValue = 'male';
+                                    }
+                                    if (_value == 2) {
+                                      genderValue = 'female';
+                                    }
+                                    await SignupCubit().signUp_User(
+                                      emailcontroller.text.trim(),
+                                      passwordcontroller.text.trim(),
+                                      namecontroller.text,
+                                      genderValue,
+                                      numbercontroller.text,
+                                      agecontroller.text,
+                                    );
+                                    navigatAndFinish(
+                                        context, const VerifyEmail());
+                                  }
+                                },
+                                text: 'SignUp',
+                                radius: 10)
                           ],
                         )),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                       const Text(
+                        const Text(
                           'Already Have an account?',
                         ),
                         TextButton(

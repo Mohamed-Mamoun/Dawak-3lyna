@@ -1,6 +1,6 @@
-import 'package:dawak_3lyna/modules/Patient/Botom%20nav%20bar/bottomNav.dart';
-import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
+import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -12,6 +12,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Home Page'),
         centerTitle: true,
+       
       ),
     );
   }

@@ -53,7 +53,7 @@ class MainPageScreen extends StatelessWidget {
                 function: () {
                   navigatTo(
                     context,
-                    DonerScreen(),
+                    LoginScreen(),
                   );
                 },
                 text: 'doner',
