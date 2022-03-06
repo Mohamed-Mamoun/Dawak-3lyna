@@ -10,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
-  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
   var passwordController = TextEditingController();
 
   @override
@@ -54,10 +54,10 @@ class LoginScreen extends StatelessWidget {
                           height: 15.0,
                         ),
                         defaultFormField(
-                          controller: emailController,
-                          hint: 'Email / Phone',
-                          type: TextInputType.emailAddress,
-                          prefix: Icons.email_outlined,
+                          controller: phoneController,
+                          hint: 'Phone',
+                          type: TextInputType.phone,
+                          prefix: Icons.phone,
                           isReadOnly: false,
                           validate: (String valaue) {
                             if (valaue.isEmpty) {
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        SizedBox(
+                       const  SizedBox(
                           height: 15.0,
                         ),
                         defaultFormField(
@@ -95,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                             function: () {
                               if (formKey.currentState.validate()) {
                                 LoginCubit.get(context).userLogin(
-                                    email: emailController.text,
+                                    email: phoneController.text,
                                     password: passwordController.text);
                               }
                             },

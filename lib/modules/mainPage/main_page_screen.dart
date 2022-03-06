@@ -38,7 +38,7 @@ class MainPageScreen extends StatelessWidget {
               defaultButton(
                 width: 200,
                 function: () {
-                  navigatTo(
+                  navigatAndFinish(
                     context,
                     LoginScreen(),
                   );
