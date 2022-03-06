@@ -67,11 +67,7 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                         ),
-<<<<<<< HEAD
                        const  SizedBox(
-=======
-                        const SizedBox(
->>>>>>> eb4509c5888b3086af05fa999ff46856e29b4714
                           height: 15.0,
                         ),
                         defaultFormField(
@@ -100,17 +96,10 @@ class LoginScreen extends StatelessWidget {
                             radius: 15.0,
                             function: () async {
                               if (formKey.currentState.validate()) {
-<<<<<<< HEAD
                                 LoginCubit.get(context).userLogin(
                                     email: phoneController.text,
                                     password: passwordController.text);
                               }
-=======
-                                   LoginCubit.get(context).userLogin(
-                                      email: emailController.text,
-                                      password: passwordController.text); 
-                                } 
->>>>>>> eb4509c5888b3086af05fa999ff46856e29b4714
                             },
                             text: 'login',
                           ),
