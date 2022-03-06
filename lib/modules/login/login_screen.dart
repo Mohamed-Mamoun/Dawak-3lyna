@@ -1,9 +1,11 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:dawak_3lyna/modules/Patient/Botom%20nav%20bar/bottomNav.dart';
 import 'package:dawak_3lyna/modules/Signup/Signup_Screen.dart';
 import 'package:dawak_3lyna/modules/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/login/cubit/states.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                                 color: Colors.black,
                               ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
                         defaultFormField(
@@ -65,7 +67,11 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                         ),
+<<<<<<< HEAD
                        const  SizedBox(
+=======
+                        const SizedBox(
+>>>>>>> eb4509c5888b3086af05fa999ff46856e29b4714
                           height: 15.0,
                         ),
                         defaultFormField(
@@ -92,12 +98,19 @@ class LoginScreen extends StatelessWidget {
                           builder: (context) => defaultButton(
                             background: myColor,
                             radius: 15.0,
-                            function: () {
+                            function: () async {
                               if (formKey.currentState.validate()) {
+<<<<<<< HEAD
                                 LoginCubit.get(context).userLogin(
                                     email: phoneController.text,
                                     password: passwordController.text);
                               }
+=======
+                                   LoginCubit.get(context).userLogin(
+                                      email: emailController.text,
+                                      password: passwordController.text); 
+                                } 
+>>>>>>> eb4509c5888b3086af05fa999ff46856e29b4714
                             },
                             text: 'login',
                           ),
@@ -105,23 +118,23 @@ class LoginScreen extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 15.0,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               'Don\'t have an account?',
                             ),
                             TextButton(
                               onPressed: () {
                                 navigatTo(context, SignupScreen());
                               },
-                              child: Text(
+                              child: const Text(
                                 'REGISTER NOW',
                               ),
                             ),

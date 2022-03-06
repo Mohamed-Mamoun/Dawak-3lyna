@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "180831800790",
-    "project_id": "dwak-3lyna",
-    "storage_bucket": "dwak-3lyna.appspot.com"
+    "project_number": "389429468039",
+    "project_id": "dwak-3lyna-61718",
+    "storage_bucket": "dwak-3lyna-61718.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:180831800790:android:0eb4c5fab6e35cf4882877",
+        "mobilesdk_app_id": "1:389429468039:android:c712abb323401917595122",
         "android_client_info": {
-          "package_name": "com.codesudan.d3lyna"
+          "package_name": "com.codesudan.dwak3lyna"
         }
       },
       "oauth_client": [
         {
-          "client_id": "180831800790-8qgiuknoqtdb8lbp705v7m4pvprgrfmd.apps.googleusercontent.com",
+          "client_id": "389429468039-5neugrqpl0g7n6jkldtk4h75c2hc9s3s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAecSxLiUJExxNVD7t42csXTD5KPvG7Fv4"
+          "current_key": "AIzaSyDk_A6_wOervBShfWU2Ag2iYo40udwWvnE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "180831800790-8qgiuknoqtdb8lbp705v7m4pvprgrfmd.apps.googleusercontent.com",
+              "client_id": "389429468039-5neugrqpl0g7n6jkldtk4h75c2hc9s3s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

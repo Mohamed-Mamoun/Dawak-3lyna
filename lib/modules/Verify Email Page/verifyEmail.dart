@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
+import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/modules/Patient/Botom%20nav%20bar/bottomNav.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,50 +13,73 @@ class VerifyEmail extends StatefulWidget {
 }
 
 class _VerifyEmailState extends State<VerifyEmail> {
-  @override
-  var currentUser = FirebaseAuth.instance.currentUser;
   bool isEmailVerified = false;
+  bool canresent = false;
   Timer timer;
-
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    isEmailVerified = currentUser.emailVerified;
+    isEmailVerified = FirebaseAuth.instance.currentUser.emailVerified;
 
     if (!isEmailVerified) {
       sendVerification();
-      var timer = Timer.periodic(const Duration(seconds: 3), (timer) {
-        checkEmailverified();
-      });
+      timer = Timer.periodic(
+        const Duration(seconds: 3),
+        (_) => checkEmailverified(),
+      );
     }
   }
 
   @override
   void dispose() {
-    timer?.cancel();
+    if (isEmailVerified = true) timer?.cancel();
     super.dispose();
   }
 
   Future sendVerification() async {
-    await currentUser.sendEmailVerification();
+    await FirebaseAuth.instance.currentUser.sendEmailVerification();
+    setState(() {
+      canresent = false;
+    });
+    await Future.delayed(const Duration(seconds: 5));
+    setState(() {
+      canresent = true;
+    });
   }
 
   Future checkEmailverified() async {
-    await currentUser.reload();
+    await FirebaseAuth.instance.currentUser.reload();
     setState(() {
-      isEmailVerified = currentUser.emailVerified;
+      isEmailVerified = FirebaseAuth.instance.currentUser.emailVerified;
     });
-    if (isEmailVerified) timer.cancel();
+    if (isEmailVerified) timer?.cancel();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return isEmailVerified
-        ? NavBar
-        : Scaffold(
-            appBar: AppBar(
-              title: const Text('Verify Email'),
+  Widget build(BuildContext context) => isEmailVerified
+      ? DonerScreen()
+      : Scaffold(
+          appBar: AppBar(
+            title: const Text('Verify Email'),
+          ),
+          body: Container(
+            margin: const EdgeInsets.symmetric(vertical: 250, horizontal: 11),
+            child: Column(
+              children: [
+                const Text(
+                  'A verification email has been sent to your email',
+                  style:  TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                defaultButton(
+                    radius: 8,
+                    text: 'Resent Email',
+                    function: () => canresent ? sendVerification() : null)
+              ],
             ),
-          );
-  }
+          ),
+        );
 }

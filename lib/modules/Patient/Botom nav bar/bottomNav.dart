@@ -34,20 +34,6 @@ class NavBar extends StatelessWidget {
   }
 
 
-/*
-Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: items,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: selectedindex,
-          onTap: (index) {
-            setState(() {
-              selectedindex = index;
-            });
-          },
-        ),
-        body: screens[selectedindex],
-      ),)
-  */
+
   
 
