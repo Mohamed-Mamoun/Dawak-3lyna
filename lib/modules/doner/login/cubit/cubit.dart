@@ -1,4 +1,4 @@
-import 'package:dawak_3lyna/modules/login/cubit/states.dart';
+import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,10 +13,12 @@ class LoginCubit extends Cubit<LoginStates> {
     @required String password,
   }) {
     emit(LoginLoadingState());
-    FirebaseAuth.instance.signInWithEmailAndPassword(
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
       email: email,
       password: password,
-    ).then((value) {
+    )
+        .then((value) {
       emit(LoginSuccessState(value.user.uid));
       print(value.user.email);
       print(value.user.uid);

@@ -1,5 +1,4 @@
-import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
-import 'package:dawak_3lyna/modules/login/login_screen.dart';
+import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +50,7 @@ class MainPageScreen extends StatelessWidget {
               defaultButton(
                 width: 200,
                 function: () {
-                  navigatTo(
+                  navigatAndFinish(
                     context,
                     LoginScreen(),
                   );

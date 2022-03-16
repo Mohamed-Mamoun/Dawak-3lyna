@@ -1,4 +1,3 @@
-import 'package:dawak_3lyna/modules/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
@@ -29,20 +28,22 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   List<BoardingModal> boarding = [
     BoardingModal(
-      image: 'images/img1.jpg',
+      image: 'assets/images/img1.jpg',
       title: 'Heathcare',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
+      body:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
-      image: 'images/img2.jpg',
+      image: 'assets/images/img2.jpg',
       title: 'Medicine',
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
-      image: 'images/img3.jpg',
+      image: 'assets/images/img3.jpg',
       title: 'Online Consultation',
-      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
+      body:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
   ];
 
@@ -122,6 +123,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
                 const Spacer(),
                 FloatingActionButton(
+                  backgroundColor: myColor,
                   onPressed: () {
                     if (isLast) {
                       navigatAndFinish(

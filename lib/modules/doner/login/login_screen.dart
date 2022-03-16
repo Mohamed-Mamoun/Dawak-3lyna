@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                navigatTo(context, RegisterScreen());
+                                navigatTo(context,RegisterScreen()) ;
                               },
                               child: const Text(
                                 'REGISTER NOW',

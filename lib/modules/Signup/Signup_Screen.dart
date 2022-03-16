@@ -1,6 +1,5 @@
 import 'package:dawak_3lyna/modules/Signup/cubit/signup_cubit.dart';
 import 'package:dawak_3lyna/modules/Verify%20Email%20Page/verifyEmail.dart';
-import 'package:dawak_3lyna/modules/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/cubit/cubit.dart';
 import 'package:dawak_3lyna/shared/cubit/states.dart';
@@ -36,20 +35,24 @@ class _SignupScreenState extends State<SignupScreen> {
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: SingleChildScrollView(
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 80, bottom: 15, right: 280),
-                      child: Text(
-                        'SignUp',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                        ),
+                    Text(
+                      'SignUp',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
                       ),
+                    ),
+                    SizedBox(
+                      height: 20,
                     ),
                     Form(
                         key: formKey,
@@ -237,7 +240,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            navigatTo(context, LoginScreen());
+                           // navigatTo(context, LoginScreen());
                           },
                           child: const Text(
                             'Login',

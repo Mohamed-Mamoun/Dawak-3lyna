@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ThemeData lightTheme = ThemeData(
-  // primarySwatch: myColor,
+  primarySwatch: myColor,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
     titleSpacing: 20.0,
@@ -16,7 +16,7 @@ ThemeData lightTheme = ThemeData(
       color: Colors.black,
       fontFamily: 'Jannah',
       fontSize: 20.0,
-      //sfontWeight: FontWeight.bold,
+      fontWeight: FontWeight.bold,
     ),
     //backwardsCompatibility: false,
     systemOverlayStyle: SystemUiOverlayStyle(
@@ -37,7 +37,8 @@ ThemeData lightTheme = ThemeData(
   textTheme: const TextTheme(
     bodyText1: TextStyle(
       fontFamily: 'Jannah',
-      fontWeight: FontWeight.w600,
+      fontSize: 25,
+      fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
   ),

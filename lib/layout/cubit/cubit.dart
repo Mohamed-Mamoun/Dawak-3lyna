@@ -10,6 +10,7 @@ part 'HomeSate.dart';
 
 class HomeCubitCubit extends Cubit<HomeCubitState> {
   HomeCubitCubit() : super(HomeCubitInitial());
+
   List screens = [const Home(), const Profile(), NewRequest()];
 
   List<BottomNavigationBarItem> items = [
@@ -23,7 +24,7 @@ class HomeCubitCubit extends Cubit<HomeCubitState> {
   ];
 
   int selectedindex = 0;
-  
+
   setIndex(int index) {
     selectedindex = index;
     emit(NavState());

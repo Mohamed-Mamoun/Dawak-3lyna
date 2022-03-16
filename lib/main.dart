@@ -19,15 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Dawak 3lyna',
-<<<<<<< HEAD
       theme:lightTheme,
       home: const OnBoardingScreen(),
-=======
-      theme: ThemeData(
-        primarySwatch: myColor,
-      ),
-      home:  const OnBoardingScreen(),
->>>>>>> eb4509c5888b3086af05fa999ff46856e29b4714
     );
   }
 }

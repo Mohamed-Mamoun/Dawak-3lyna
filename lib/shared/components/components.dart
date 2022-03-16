@@ -5,9 +5,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 // Button
 Widget defaultButton({
   double width = double.infinity,
-  Color background= myColor,
+  Color background = myColor,
   bool isUpperCase = true,
-  double radius = 0.0,
+  double radius = 15.0,
   @required Function function,
   @required String text,
 }) =>
@@ -31,30 +31,32 @@ Widget defaultButton({
       ),
     );
 
-Widget defaultFormField({
-  @required TextEditingController controller,
-  String label,
-  String hint,
-  @required TextInputType type,
-  @required IconData prefix,
-  IconData suffix,
-  @required Function validate,
-  Function onSubmitted,
-  Function onTap,
-  Function onChanged,
-  bool isPassword = false,
-  bool isReadOnly = false,
-  Function suffixPressed,
-  bool obscureText,
-  double radius = 15.0,
-  Color fill
-}) =>
+Widget defaultFormField(
+        {@required TextEditingController controller,
+        String label,
+        String hint,
+        @required TextInputType type,
+        @required IconData prefix,
+        IconData suffix,
+        @required Function validate,
+        Function onSubmitted,
+        Function onTap,
+        Function onChanged,
+        bool isPassword = false,
+        bool isReadOnly = false,
+        Function suffixPressed,
+        bool obscureText,
+        double radius = 15.0,
+        Color fill}) =>
     TextFormField(
       controller: controller,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
-        prefixIcon: Icon(prefix,color: Colors.black87),
+        prefixIcon: Icon(
+          prefix,
+          color: myColor,
+        ),
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: suffixPressed,
@@ -98,7 +100,6 @@ void navigatAndFinish(context, widget) => Navigator.pushReplacement(
       MaterialPageRoute(builder: (context) => widget),
     );
 
-
 void showToast({
   @required String text,
   @required ToastStates state,
@@ -131,7 +132,3 @@ Color chooseToastColor(ToastStates state) {
   }
   return color;
 }
-
-
-
-        
