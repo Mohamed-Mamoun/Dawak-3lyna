@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -139,10 +140,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(
+                    height: 15,
+                  ),
+                  ListTile(
+                    leading: const Text(
+                      'Prescription',
+                    ),
+                    trailing: IconButton(
+                      onPressed: () {},
+                      icon: const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.camera_alt),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
                     height: 20,
                   ),
                   defaultButton(
-                    function: () {},
+                    function: () {
+                      navigatTo(
+                        context,
+                        LayoutScreen(),
+                      );
+                    },
                     text: 'Sign Up',
                   ),
                   Row(
