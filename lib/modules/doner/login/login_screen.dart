@@ -1,4 +1,5 @@
 import 'package:conditional_builder/conditional_builder.dart';
+import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
@@ -101,6 +102,7 @@ class LoginScreen extends StatelessWidget {
                                 LoginCubit.get(context).userLogin(
                                     email: emailController.text,
                                     password: passwordController.text);
+                                    navigatTo(context, const LayoutScreen());
                               }
                             },
                             text: 'login',

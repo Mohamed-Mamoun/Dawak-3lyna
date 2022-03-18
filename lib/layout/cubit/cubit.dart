@@ -1,14 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:dawak_3lyna/modules/%20%20request/request_screen.dart';
-import 'package:dawak_3lyna/modules/Patient/Home/Patient_Home.dart';
-import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
-import 'package:dawak_3lyna/modules/Patient/Profile/Patient_Profile.dart';
+
 import 'package:dawak_3lyna/modules/home/home_screen.dart';
 import 'package:dawak_3lyna/modules/profile/profile_screen.dart';
-import 'package:dawak_3lyna/shared/styles/colors.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
 
 part 'state.dart';
 
@@ -17,24 +15,23 @@ class HomeCubit extends Cubit<HomeStates> {
 
   static HomeCubit get(context) => BlocProvider.of(context);
 
+  final auth = FirebaseAuth.instance;
+
   List<Widget> screens = [
     const HomeScreen(),
     const RequesrScreen(),
     const ProfileScreen()
   ];
 
-   List<String> titles = [
+  List<String> titles = [
     'Home',
     'Request',
     'Profile',
   ];
 
+  int currentIndex = 0;
 
- int currentIndex = 0;
-
-
-
-   void changeBottom(int index) {
+  void changeBottom(int index) {
     currentIndex = index;
     emit(ChangeBottomNavState());
   }
