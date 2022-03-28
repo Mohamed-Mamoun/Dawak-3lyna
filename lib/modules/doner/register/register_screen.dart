@@ -159,10 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   defaultButton(
                     function: () {
-                      navigatTo(
-                        context,
-                        LayoutScreen(),
-                      );
+                      
                     },
                     text: 'Sign Up',
                   ),

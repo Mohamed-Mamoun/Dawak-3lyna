@@ -99,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                             radius: 15.0,
                             function: () async {
                               if (formKey.currentState.validate()) {
-                                LoginCubit.get(context).userLogin(
+                               await LoginCubit.get(context).userLogin(
                                     email: emailController.text,
                                     password: passwordController.text);
                                     navigatTo(context, const LayoutScreen());
