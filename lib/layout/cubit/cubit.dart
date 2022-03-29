@@ -28,7 +28,7 @@ class HomeCubit extends Cubit<HomeStates> {
   String imageName = '';
   XFile pickedImage;
   final patient = FirebaseFirestore.instance.collection('Patient');
-  var downloadUrl;
+  String downloadUrl;
 
   Future pickImageFromCamera() async {
     pickedImage = await picker.pickImage(source: ImageSource.camera);
@@ -47,7 +47,7 @@ class HomeCubit extends Cubit<HomeStates> {
   Future uploudImage() async {
     var ref = storage.ref().child('images/$imageName');
     await ref.putFile(image);
-    downloadUrl = ref.getDownloadURL();
+    downloadUrl = await ref.getDownloadURL();
 
     emit(UploadImageState());
   }

@@ -1,6 +1,7 @@
 import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MainPageScreen extends StatelessWidget {
@@ -43,7 +44,8 @@ class MainPageScreen extends StatelessWidget {
                 ),
                 defaultButton(
                   width: 200,
-                  function: () {
+                  function: () async{
+                    await FirebaseAuth.instance.signInAnonymously();
                     navigatTo(
                       context,
                       NewRequest(),
