@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:dawak_3lyna/modules/%20%20request/request_screen.dart';
 
 import 'package:dawak_3lyna/modules/home/home_screen.dart';
@@ -18,7 +17,7 @@ class HomeCubit extends Cubit<HomeStates> {
   final auth = FirebaseAuth.instance;
 
   List<Widget> screens = [
-    const HomeScreen(),
+    HomeScreen(),
     const RequesrScreen(),
     const ProfileScreen()
   ];
@@ -35,22 +34,4 @@ class HomeCubit extends Cubit<HomeStates> {
     currentIndex = index;
     emit(ChangeBottomNavState());
   }
-  //List screens = [const Home(), const Profile(), NewRequest()];
-
-  // List<BottomNavigationBarItem> items = [
-  //   const BottomNavigationBarItem(
-  //       icon: Icon(Icons.home, size: 30, color: myColor), label: 'Home'),
-  //   const BottomNavigationBarItem(
-  //       icon: Icon(Icons.account_circle, size: 30, color: myColor),
-  //       label: 'Profile'),
-  //   const BottomNavigationBarItem(
-  //       icon: Icon(Icons.add, size: 40, color: myColor), label: 'New Request')
-  // ];
-
-  // int selectedindex = 0;
-
-  // setIndex(int index) {
-  //   selectedindex = index;
-  //   emit(NavState());
-  // }
 }

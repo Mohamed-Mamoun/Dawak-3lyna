@@ -1,5 +1,9 @@
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
+import 'package:dawak_3lyna/layout/layout_screen.dart';
+import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
+import 'package:dawak_3lyna/shared/components/constants.dart';
+import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +13,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   //Bloc.observer = MyBlocObserver();
+ // Widget widget;
+ // await CacheHelper.init();
+  //id = CacheHelper.getData(key: 'id');
+
+  // if (id != null) {
+  //   widget = LayoutScreen();
+  // } else {
+  //   widget = LoginScreen();
+  // }
+
   runApp(const MyApp());
 }
 

@@ -140,21 +140,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
-                  ),
-                  ListTile(
-                    leading: const Text(
-                      'Prescription',
-                    ),
-                    trailing: IconButton(
-                      onPressed: () {},
-                      icon: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Icon(Icons.camera_alt),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
                     height: 20,
                   ),
                   defaultButton(

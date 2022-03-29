@@ -24,76 +24,79 @@ class NewRequest extends StatelessWidget {
                   children: [
                     const Text(
                       'Add New Request',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(
                       height: 15,
                     ),
-                     defaultFormField(
-                       label: 'Full Name',
+                    defaultFormField(
+                        label: 'Full Name',
                         controller: name,
                         type: TextInputType.text,
                         prefix: Icons.person,
                         validate: (value) {
-                          if(value.isEmpty){
+                          if (value.isEmpty) {
                             return 'Enter Your Name';
                           }
                         }),
-                         const SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                     defaultFormField(
-                       label: 'Phone Number',
+                    defaultFormField(
+                        label: 'Phone Number',
                         controller: phone_number,
                         type: TextInputType.number,
                         prefix: Icons.phone,
                         validate: (value) {
-                          if(value.isEmpty){
+                          if (value.isEmpty) {
                             return 'Enter Your Phone Number';
                           }
                         }),
-                         const SizedBox(
-                      height: 10,
-                    ),
-                     defaultFormField(
-                       label: 'Age',
-                        controller: age,
-                        type: TextInputType.text,
-                        prefix: Icons.date_range,
-                        validate: (value) {
-                          if(value.isEmpty){
-                            return 'Enter Your Age';
-                          }
-                        }),
-                         const SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     defaultFormField(
-                      label: 'Medicine Name',
+                        label: 'Age',
+                        controller: age,
+                        type: TextInputType.number,
+                        prefix: Icons.date_range,
+                        validate: (value) {
+                          if (value.isEmpty) {
+                            return 'Enter Your Age';
+                          }
+                        }),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    defaultFormField(
+                        label: 'Medicine Name',
                         controller: medicineName,
                         type: TextInputType.text,
                         prefix: Icons.medication,
                         validate: (value) {
-                          if(value.isEmpty){
+                          if (value.isEmpty) {
                             return 'Enter a medicine Nmae';
                           }
                         }),
-                         const SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                        defaultFormField(
+                    defaultFormField(
                         type: TextInputType.text,
                         prefix: Icons.upload,
                         validate: (value) {
-                          if(value.isEmpty){
-                          }
+                          if (value.isEmpty) {}
                         }),
-                         const SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
-                      defaultButton(function: (){
-                        if(formKey.currentState.validate()){}
-                      }, text: 'Submit', radius: 15)
+                    defaultButton(
+                        function: () {
+                          if (formKey.currentState.validate()) {}
+                        },
+                        text: 'Submit',
+                        radius: 15)
                   ],
                 ),
               ),
