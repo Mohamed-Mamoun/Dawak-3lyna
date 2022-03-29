@@ -195,11 +195,12 @@ class _NewRequestState extends State<NewRequest> {
                         height: 15,
                       ),
                       defaultButton(
-                          function: () {
+                          function: () async{
                             if (formKey.currentState.validate()) {
                               if(valuechoose != null){
                               if(cubit.imageName != ''){
-                                    cubit.uploudImage();
+                                    await cubit.uploudImage();
+                                    cubit.saveData(name,phone_number, age, medicineName, valuechoose, cubit.downloadUrl);
                               }else{
                                 showToast(text: 'Please Pick Prescription', state: ToastStates.ERROR);
                               }

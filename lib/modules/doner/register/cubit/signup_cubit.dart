@@ -17,7 +17,6 @@ class SignupCubit extends Cubit<SignupState> {
     String email,
     String password,
     String name,
-    String gender,
     String number,
     String city,
   ) async {
@@ -27,7 +26,6 @@ class SignupCubit extends Cubit<SignupState> {
               firestore.collection('users').doc(value.user.uid).set({
                 'Id': value.user.uid,
                 'Full_Name': name,
-                'gender': gender,
                 'Phone_Number': number,
                 'City': city,
                 'Email': email
