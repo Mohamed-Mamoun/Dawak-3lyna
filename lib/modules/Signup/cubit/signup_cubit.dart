@@ -12,7 +12,7 @@ class SignupCubit extends Cubit<SignupState> {
   final firestore = FirebaseFirestore.instance;
 
   // ************************************************************
-  // Create user account And Save his data To Firestore
+  // Create user account And Save his data To Database
   Future signUp_User(
     String email,
     String password,

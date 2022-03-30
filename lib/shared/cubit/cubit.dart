@@ -9,11 +9,6 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
   
 
-
-
-
-
-
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
