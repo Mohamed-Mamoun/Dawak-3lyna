@@ -1,7 +1,7 @@
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
-import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
+import 'package:dawak_3lyna/shared/bolc_observer.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
@@ -12,24 +12,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  //Bloc.observer = MyBlocObserver();
- // Widget widget;
- // await CacheHelper.init();
-  //id = CacheHelper.getData(key: 'id');
 
-  // if (id != null) {
-  //   widget = LayoutScreen();
-  // } else {
-  //   widget = LoginScreen();
-  // }
+  Widget widget;
 
-  runApp(const MyApp());
+  await CacheHelper.init();
+
+  uId = CacheHelper.getData(key: 'uId');
+
+  print(uId);
+
+  if (uId != null) {
+    widget = LayoutScreen();
+  } else {
+    widget = LoginScreen();
+  }
+
+  runApp(MyApp(
+    startWidget: widget,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  final Widget startWidget;
 
-  // This widget is the root of your application.
+  const MyApp({Key key, this.startWidget}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -45,7 +52,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-            home: const OnBoardingScreen(),
+            home: startWidget,
           );
         },
       ),

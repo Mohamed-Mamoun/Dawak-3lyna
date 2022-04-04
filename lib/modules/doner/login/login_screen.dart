@@ -4,6 +4,7 @@ import 'package:dawak_3lyna/modules/doner/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
+import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -22,34 +23,33 @@ class LoginScreen extends StatelessWidget {
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
         listener: (context, state) {
-          // if (state is LoginErrorState) {
-          //   showToast(
-          //     text: 'User Login Error',
-          //     state: ToastStates.ERROR,
-          //   );
-          // }
+          if (state is LoginErrorState) {
+            showToast(
+              text: 'User Login Error',
+              state: ToastStates.ERROR,
+            );
+          }
 
-          // if (state is LoginSuccessState) {
+          if (state is LoginSuccessState) {
+            CacheHelper.saveData(
+              key: 'uId',
+              value: state.uId,
+            ).then(
+              (value) {
+               //  uId = state.uId;
+                navigatAndFinish(
+                  context,
+                  const LayoutScreen(),
+                );
+              },
+            );
 
-          //     CacheHelper.saveData(
-          //     key: 'uId',
-          //     value: state.uId,
-          //   ).then(
-          //     (value) {
-          //       // uId = state.uId;
-          //       navigatAndFinish(
-          //         context,
-          //        const LayoutScreen(),
-          //       );
-          //     },
-          //   );
-
-          //   print(state.uId);
-          //   showToast(
-          //     text: state.toString(),
-          //     state: ToastStates.SUCCESS,
-          //   );
-          // }
+            print(state.uId);
+            showToast(
+              text: ' User Login Success',
+              state: ToastStates.SUCCESS,
+            );
+          }
         },
         builder: (context, state) {
           return Scaffold(
@@ -115,10 +115,9 @@ class LoginScreen extends StatelessWidget {
                             radius: 15.0,
                             function: () async {
                               if (formKey.currentState.validate()) {
-                               await LoginCubit.get(context).userLogin(
+                                await LoginCubit.get(context).userLogin(
                                     email: emailController.text,
                                     password: passwordController.text);
-                                navigatTo(context, const LayoutScreen());
                               }
                             },
                             text: 'login',

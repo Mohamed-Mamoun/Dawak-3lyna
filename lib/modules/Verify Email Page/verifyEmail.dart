@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:dawak_3lyna/modules/doner/doner_screen.dart';
+import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
 
   @override
   Widget build(BuildContext context) => isEmailVerified
-      ? DonerScreen()
+      ? RegisterScreen()
       : Scaffold(
           appBar: AppBar(
             title: const Text('Verify Email'),

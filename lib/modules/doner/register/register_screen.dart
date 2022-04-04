@@ -1,4 +1,3 @@
-import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Verify%20Email%20Page/verifyEmail.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/doner/register/cubit/signup_cubit.dart';
