@@ -33,7 +33,7 @@ class _NewRequestState extends State<NewRequest> {
     final cubit =  HomeCubit.get(context);
     return WillPopScope(
       onWillPop: ()async{
-        HomeCubit.get(context).imageName = '';
+        cubit.imageName = '';
         return true;
       },                     
       child: Scaffold(
@@ -134,7 +134,7 @@ class _NewRequestState extends State<NewRequest> {
                           }).toList(),
                           isExpanded: true,
                           hint: const Text(
-                            ' Select Your City',
+                            '   Select Your City',
                           ),
                           value: valuechoose,
                           onChanged: (newValue) {

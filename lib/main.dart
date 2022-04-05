@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-            home: const OnBoardingScreen(),
+            home: const Dashboard_Layout(),
           );
         },
       ),

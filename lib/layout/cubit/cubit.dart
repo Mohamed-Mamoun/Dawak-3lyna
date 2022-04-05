@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dawak_3lyna/modules/%20%20request/request_screen.dart';
+import 'package:dawak_3lyna/modules/Dashboard/Doners%20Requests/Doners.dart';
+import 'package:dawak_3lyna/modules/Dashboard/Patients%20Requests/Patients.dart';
 
 import 'package:dawak_3lyna/modules/home/home_screen.dart';
 import 'package:dawak_3lyna/modules/profile/profile_screen.dart';
@@ -82,7 +84,13 @@ class HomeCubit extends Cubit<HomeStates> {
     'Request',
     'Profile',
   ];
+   List<Widget> dashboard_screens = [
+    const Donors(),
+    const Patients(),
+  
+  ];
 
+ 
   int currentIndex = 0;
 
   void changeBottom(int index) {
