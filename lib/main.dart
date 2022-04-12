@@ -1,5 +1,6 @@
 import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
+import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-            home: const Dashboard_Layout(),
+            home: const MainPageScreen(),
           );
         },
       ),
