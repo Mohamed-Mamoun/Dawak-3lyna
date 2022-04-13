@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dawak_3lyna/modules/%20%20request/request_screen.dart';
+import 'package:dawak_3lyna/modules/Dashboard/Doners%20Requests/Doners.dart';
+import 'package:dawak_3lyna/modules/Dashboard/Patients%20Requests/Patients.dart';
 
 import 'package:dawak_3lyna/modules/home/home_screen.dart';
 import 'package:dawak_3lyna/modules/profile/profile_screen.dart';
@@ -30,8 +32,8 @@ class HomeCubit extends Cubit<HomeStates> {
   var downloadUrl;
 
   Future pickImageFromCamera() async {
-     pickedImage = await picker.pickImage(source: ImageSource.camera);
-    
+    pickedImage = await picker.pickImage(source: ImageSource.camera);
+
     imageName = basename(pickedImage.path);
     emit(PickImageFromCameraState());
   }
@@ -39,22 +41,35 @@ class HomeCubit extends Cubit<HomeStates> {
   Future pickImageFromGallery() async {
     pickedImage = await picker.pickImage(source: ImageSource.gallery);
     image = File(pickedImage.path);
-    imageName =  basename(pickedImage.path);
+    imageName = basename(pickedImage.path);
     emit(PickImageFromGalleryState());
   }
 
-  Future uploudImage()async{
-var ref =  storage.ref().child('images/$imageName');
-  await ref.putFile(image);
-  downloadUrl = ref.getDownloadURL();
-  
-  emit(UploadImageState());
-  }
-  Future saveData()async{
-    await patient.add({
+  Future uploudImage() async {
+    var ref = storage.ref().child('images/$imageName');
+    await ref.putFile(image);
+    downloadUrl = ref.getDownloadURL();
 
-    });
+    emit(UploadImageState());
+  }
+
+  Future saveData(
+    TextEditingController name,
+    TextEditingController number,
+    TextEditingController age,
+    TextEditingController medicineName,
+    String city,
+    var imageUrl
     
+  ) async {
+    await patient.add({
+      'Name':name.text,
+      'Phone_Number':number.text,
+      'Age':age.text,
+      'Medicine_Name':medicineName.text,
+      'City':city,
+      'Image_url':image.toString()
+    });
   }
 
   List<Widget> screens = [
@@ -67,6 +82,10 @@ var ref =  storage.ref().child('images/$imageName');
     'Home',
     'Request',
     'Profile',
+  ];
+  List<Widget> dashboard_screens = [
+    const Donors(),
+    const Patients(),
   ];
 
   int currentIndex = 0;
