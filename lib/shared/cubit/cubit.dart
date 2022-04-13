@@ -2,22 +2,13 @@ import 'package:dawak_3lyna/shared/cubit/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AppCubit extends Cubit<AppStates> {
-  AppCubit() : super(AppInitialState());
+class LocaleCubit extends Cubit<LocateStates> {
+  LocaleCubit() : super(SelectedLocale(Locale('en')));
+
+  void toArabic() => emit(SelectedLocale(Locale('ar')));
+
+  void toEnglish() => emit(SelectedLocale(Locale('en')));
 
   // Create object To use any wher .
-  static AppCubit get(context) => BlocProvider.of(context);
-  
-
-  IconData suffix = Icons.visibility_outlined;
-  bool isPassword = true;
-
-  void changePassword() {
-    suffix =
-        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
-    isPassword = !isPassword;
-    emit(ChangePasswordShow());
-  }
-
- 
+  static LocaleCubit get(context) => BlocProvider.of(context);
 }

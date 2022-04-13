@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
@@ -10,8 +11,8 @@ class MainPageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
-       return false;
+      onWillPop: () async {
+        return false;
       },
       child: Scaffold(
         appBar: AppBar(
@@ -32,8 +33,8 @@ class MainPageScreen extends StatelessWidget {
                 const SizedBox(
                   height: 70.0,
                 ),
-                const Text(
-                  'Chooes Type',
+                Text(
+                  "${getLang(context, "choses")}",
                   style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -44,28 +45,27 @@ class MainPageScreen extends StatelessWidget {
                 ),
                 defaultButton(
                   width: 200,
-                  function: () async{
+                  function: () async {
                     await FirebaseAuth.instance.signInAnonymously();
                     navigatTo(
                       context,
                       NewRequest(),
                     );
                   },
-                  text: 'patient',
+                  text: "${getLang(context, "Patient")}",
                 ),
                 const SizedBox(
                   height: 20.0,
                 ),
                 defaultButton(
-                  width: 200,
-                  function: () {
-                    navigatAndFinish(
-                      context,
-                      LoginScreen(),
-                    );
-                  },
-                  text: 'doner',
-                ),
+                    width: 200,
+                    function: () {
+                      navigatAndFinish(
+                        context,
+                        LoginScreen(),
+                      );
+                    },
+                    text: "${getLang(context, "donation")}"),
               ],
             ),
           ),
