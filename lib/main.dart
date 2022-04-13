@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => HomeCubit(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (BuildContext context) => DashboardCubit(),
         ),
       ],
@@ -63,7 +63,27 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-            home: const Dashboard_Layout(),
+            home: startWidget,
+            localizationsDelegates: [
+              AppLocale.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate
+            ],
+            supportedLocales: [
+              const Locale("en", ""),
+              const Locale("ar", ""),
+            ],
+            localeResolutionCallback: (currentLang, supportLang) {
+              if (currentLang != null) {
+                for (Locale locale in supportLang) {
+                  if (locale.languageCode == currentLang.languageCode) {
+                    // mySharedPreferences.setString("lang",currentLang.languageCode) ;
+                    return currentLang;
+                  }
+                }
+              }
+              return supportLang.first;
+            },
           );
         },
       ),
