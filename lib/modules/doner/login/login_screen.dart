@@ -4,6 +4,8 @@ import 'package:dawak_3lyna/modules/doner/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
+import 'package:dawak_3lyna/shared/components/constants.dart';
+import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,14 +25,28 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginErrorState) {
             showToast(
-              text: state.error.toString(),
+              text: 'User Login Error',
               state: ToastStates.ERROR,
             );
           }
+
           if (state is LoginSuccessState) {
-            // print(state.uId);
+            CacheHelper.saveData(
+              key: 'uId',
+              value: state.uId,
+            ).then(
+              (value) {
+               //  uId = state.uId;
+                navigatAndFinish(
+                  context,
+                  const LayoutScreen(),
+                );
+              },
+            );
+
+            print(state.uId);
             showToast(
-              text: state.toString(),
+              text: ' User Login Success',
               state: ToastStates.SUCCESS,
             );
           }
@@ -62,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                           controller: emailController,
                           hint: 'Email',
                           type: TextInputType.emailAddress,
-                          prefix: Icons.phone,
+                          prefix: Icons.email_outlined,
                           isReadOnly: false,
                           validate: (String valaue) {
                             if (valaue.isEmpty) {
@@ -77,7 +93,7 @@ class LoginScreen extends StatelessWidget {
                           controller: passwordController,
                           hint: 'Password',
                           type: TextInputType.visiblePassword,
-                          prefix: Icons.lock,
+                          prefix: Icons.lock_outline,
                           isPassword: LoginCubit.get(context).isPasswordShow,
                           suffix: LoginCubit.get(context).suffix,
                           suffixPressed: () {
@@ -99,10 +115,9 @@ class LoginScreen extends StatelessWidget {
                             radius: 15.0,
                             function: () async {
                               if (formKey.currentState.validate()) {
-                               await LoginCubit.get(context).userLogin(
+                                await LoginCubit.get(context).userLogin(
                                     email: emailController.text,
                                     password: passwordController.text);
-                                    navigatTo(context, const LayoutScreen());
                               }
                             },
                             text: 'login',
@@ -125,7 +140,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                navigatTo(context,RegisterScreen()) ;
+                                navigatTo(context, RegisterScreen());
                               },
                               child: const Text(
                                 'REGISTER NOW',

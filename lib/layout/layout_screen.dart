@@ -24,17 +24,22 @@ class LayoutScreen extends StatelessWidget {
               title: Text(
                 cubit.titles[cubit.currentIndex],
               ),
-              actions: [
-                cubit.currentIndex == 2
-                    ? IconButton(
-                        onPressed: () async{
-                      await cubit.auth.signOut();
-                      navigatTo(context, const MainPageScreen());
-                        }, icon: const Icon(Icons.exit_to_app, color: Colors.red, size: 35,))
-                    : Text(
-                        cubit.titles[cubit.currentIndex],
-                      ),
-              ],
+              // actions: [
+              //   cubit.currentIndex == 2
+              //       ? IconButton(
+              //           onPressed: () async {
+              //             await cubit.auth.signOut();
+              //             navigatTo(context, const MainPageScreen());
+              //           },
+              //           icon: const Icon(
+              //             Icons.exit_to_app,
+              //             color: Colors.red,
+              //             size: 35,
+              //           ))
+              //       : Text(
+              //           cubit.titles[cubit.currentIndex],
+              //         ),
+              // ],
             ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
@@ -57,7 +62,7 @@ class LayoutScreen extends StatelessWidget {
                 ),
                 const BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.favorite,
+                    Icons.person_rounded,
                   ),
                   label: 'Profile',
                 ),
