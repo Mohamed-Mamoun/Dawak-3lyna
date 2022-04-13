@@ -1,15 +1,11 @@
 import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
-<<<<<<< HEAD
-import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
-import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
-=======
 import 'package:dawak_3lyna/layout/layout_screen.dart';
+import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/bolc_observer.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
->>>>>>> 1992d12f4eb0e913c380dbcfec97547afae4032c
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +46,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => HomeCubit(),
         ),
+          BlocProvider(
+          create: (BuildContext context) => DashboardCubit(),
+        ),
       ],
       child: BlocConsumer<HomeCubit, HomeStates>(
         listener: (context, state) {},
@@ -58,11 +57,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-<<<<<<< HEAD
-            home: const MainPageScreen(),
-=======
-            home: startWidget,
->>>>>>> 1992d12f4eb0e913c380dbcfec97547afae4032c
+            home: const Dashboard_Layout(),
           );
         },
       ),

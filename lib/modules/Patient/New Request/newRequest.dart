@@ -200,7 +200,7 @@ class _NewRequestState extends State<NewRequest> {
                               if(valuechoose != null){
                               if(cubit.imageName != ''){
                                     await cubit.uploudImage();
-                                    cubit.saveData();
+                                    cubit.saveData(name,phone_number, age, medicineName, valuechoose, cubit.downloadUrl);
                               }else{
                                 showToast(text: 'Please Pick Prescription', state: ToastStates.ERROR);
                               }
