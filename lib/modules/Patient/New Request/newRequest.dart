@@ -30,12 +30,12 @@ class _NewRequestState extends State<NewRequest> {
 
   @override
   Widget build(BuildContext context) {
-    final cubit =  HomeCubit.get(context);
+    final cubit = HomeCubit.get(context);
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         cubit.imageName = '';
         return true;
-      },                     
+      },
       child: Scaffold(
         appBar: AppBar(),
         body: SingleChildScrollView(
@@ -50,8 +50,10 @@ class _NewRequestState extends State<NewRequest> {
                     children: [
                       const Text(
                         'Add New Request',
-                        style:
-                            TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(
                         height: 15,
@@ -65,7 +67,7 @@ class _NewRequestState extends State<NewRequest> {
                             if (value.isEmpty) {
                               return 'Enter Your Name';
                             }
-                            if(value.toString().length < 14){
+                            if (value.toString().length < 14) {
                               return 'Enter Your Full Name';
                             }
                           }),
@@ -81,7 +83,7 @@ class _NewRequestState extends State<NewRequest> {
                             if (value.isEmpty) {
                               return 'Enter Your Phone Number';
                             }
-                             if(value.toString().length < 10){
+                            if (value.toString().length < 10) {
                               return 'Enter a correct Phone Number';
                             }
                           }),
@@ -114,67 +116,69 @@ class _NewRequestState extends State<NewRequest> {
                       const SizedBox(
                         height: 10,
                       ),
-                       Container(
-                      height: 60,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: DropdownButton(
-                          underline: Container(),
-                          items: lisItems.map((itemvalue) {
-                            return DropdownMenuItem(
-                              value: itemvalue,
-                              child: Text(itemvalue),
-                            );
-                          }).toList(),
-                          isExpanded: true,
-                          hint: const Text(
-                            '   Select Your City',
+                      Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
                           ),
-                          value: valuechoose,
-                          onChanged: (newValue) {
-                            setState(
-                              () {
-                                valuechoose = newValue;
-                              },
-                            );
-                          },
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: DropdownButton(
+                            underline: Container(),
+                            items: lisItems.map((itemvalue) {
+                              return DropdownMenuItem(
+                                value: itemvalue,
+                                child: Text(itemvalue),
+                              );
+                            }).toList(),
+                            isExpanded: true,
+                            hint: const Text(
+                              '   Select Your City',
+                            ),
+                            value: valuechoose,
+                            onChanged: (newValue) {
+                              setState(
+                                () {
+                                  valuechoose = newValue;
+                                },
+                              );
+                            },
+                          ),
                         ),
                       ),
-                    ),
                       ListTile(
                         leading: const Text(
                           'Prescription',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         trailing: SizedBox(
                           width: 100,
                           child: Row(
                             children: [
                               IconButton(
-                                onPressed: () async{
-                                cubit.pickImageFromCamera();
-                                setState(() {
-                                  cubit.imageName = cubit.image.path; 
-                                });
-                                 
+                                onPressed: () async {
+                                  cubit.pickImageFromCamera();
+                                  setState(() {
+                                    cubit.imageName = cubit.image.path;
+                                  });
                                 },
                                 icon: const CircleAvatar(
                                   backgroundColor: Colors.white,
                                   child: Icon(Icons.camera_alt),
                                 ),
                               ),
-                               IconButton(
-                                onPressed: () async{
+                              IconButton(
+                                onPressed: () async {
                                   cubit.pickImageFromGallery();
-                                   setState(() {
-                                  cubit.imageName = cubit.image.path; 
-                                });
+                                  setState(() {
+                                    cubit.imageName = cubit.image.path;
+                                  });
                                 },
                                 icon: const CircleAvatar(
                                   backgroundColor: Colors.white,
@@ -186,31 +190,45 @@ class _NewRequestState extends State<NewRequest> {
                         ),
                       ),
                       Center(
-                        child: Text(cubit.imageName.split('/').last,
-                        style: const TextStyle(fontSize: 12),
+                        child: Text(
+                          cubit.imageName.split('/').last,
+                          style: const TextStyle(fontSize: 12),
                         ),
                       ),
-                     
                       const SizedBox(
                         height: 15,
                       ),
                       defaultButton(
-                          function: () async{
-                            if (formKey.currentState.validate()) {
-                              if(valuechoose != null){
-                              if(cubit.imageName != ''){
-                                    await cubit.uploudImage();
-                                    cubit.saveData(name,phone_number, age, medicineName, valuechoose, cubit.downloadUrl);
-                              }else{
-                                showToast(text: 'Please Pick Prescription', state: ToastStates.ERROR);
+                        function: () async {
+                          if (formKey.currentState.validate()) {
+                            if (valuechoose != null) {
+                              if (cubit.imageName != '') {
+                                await cubit.uploudImage();
+                                cubit.saveData(
+                                  name,
+                                  phone_number,
+                                  age,
+                                  medicineName,
+                                  valuechoose,
+                                  cubit.downloadUrl,
+                                );
+                              } else {
+                                showToast(
+                                  text: 'Please Pick Prescription',
+                                  state: ToastStates.ERROR,
+                                );
                               }
-                              }else{
-                                showToast(text: 'Select Your City', state: ToastStates.ERROR);
-                              }
+                            } else {
+                              showToast(
+                                text: 'Select Your City',
+                                state: ToastStates.ERROR,
+                              );
                             }
-                          },
-                          text: 'Submit',
-                          radius: 15)
+                          }
+                        },
+                        text: 'Submit',
+                        radius: 15,
+                      ),
                     ],
                   ),
                 ),

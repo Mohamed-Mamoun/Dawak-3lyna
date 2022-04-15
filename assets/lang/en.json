@@ -5,7 +5,23 @@
     "login" : "login",
     "Patient" : "Patient",
     "donation": "donation",
-    "choses" : "Choses Type "
+    "choses" : "Choses Type ",
+    "Email" : "Email",
+    "Password": "Password",
+    "account?" : "'don't have an account?",
+    "REGISTER NOW" :"REGISTER NOW",
+    " validate1" : "please enter your email address",
+    " validate2" : "password must not be empty",
+    "megE" : "User Login Error",
+    "megS": "User Login Success",
+    "Home" : "Home",
+    "Request" : "Request",
+    "Profile" : "Profile",
+    "md" : " Medicine Donation",
+    "mn" : "Medicine Name",
+    "ex" : "Expiration",
+    "q" : "Quantity",
+    "submit" : "submit"
 
 
 }
