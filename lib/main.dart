@@ -3,11 +3,7 @@ import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
-<<<<<<< HEAD
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
-import 'package:dawak_3lyna/shared/bolc_observer.dart';
-=======
->>>>>>> 856db8e6d18503269cc2b7268e9767c2d0da440f
 import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/cubit/cubit.dart';
 import 'package:dawak_3lyna/shared/cubit/states.dart';
@@ -37,7 +33,7 @@ void main() async {
   if (uId != null) {
     widget = LayoutScreen();
   } else {
-    widget = LoginScreen();
+    widget = MainPageScreen();
   }
 
   runApp(MyApp(
@@ -68,12 +64,9 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-<<<<<<< HEAD
-            home: const MainPageScreen(),
-=======
             home: startWidget,
             localizationsDelegates: [
-              AppLocale.delegate,
+           AppLocale.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate
             ],
@@ -92,7 +85,6 @@ class MyApp extends StatelessWidget {
               }
               return supportLang.first;
             },
->>>>>>> 856db8e6d18503269cc2b7268e9767c2d0da440f
           );
         },
       ),
