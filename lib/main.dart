@@ -3,6 +3,7 @@ import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
+import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/bolc_observer.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
-            home: const Dashboard_Layout(),
+            home: const MainPageScreen(),
           );
         },
       ),
