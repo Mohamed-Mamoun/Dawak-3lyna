@@ -3,21 +3,31 @@ import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
+<<<<<<< HEAD
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/bolc_observer.dart';
+=======
+>>>>>>> 856db8e6d18503269cc2b7268e9767c2d0da440f
 import 'package:dawak_3lyna/shared/components/constants.dart';
+import 'package:dawak_3lyna/shared/cubit/cubit.dart';
+import 'package:dawak_3lyna/shared/cubit/states.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'localizations/applocal.dart';
+
+SharedPreferences sharedPref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
+  sharedPref = await SharedPreferences.getInstance();
   Widget widget;
-
+  //MyBlocObserver();
   await CacheHelper.init();
 
   uId = CacheHelper.getData(key: 'uId');
@@ -47,7 +57,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => HomeCubit(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (BuildContext context) => DashboardCubit(),
         ),
       ],
@@ -58,10 +68,36 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Dawak 3lyna',
             theme: lightTheme,
+<<<<<<< HEAD
             home: const MainPageScreen(),
+=======
+            home: startWidget,
+            localizationsDelegates: [
+              AppLocale.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate
+            ],
+            supportedLocales: [
+              const Locale("en", ""),
+              const Locale("ar", ""),
+            ],
+            localeResolutionCallback: (currentLang, supportLang) {
+              if (currentLang != null) {
+                for (Locale locale in supportLang) {
+                  if (locale.languageCode == currentLang.languageCode) {
+                    // mySharedPreferences.setString("lang",currentLang.languageCode) ;
+                    return currentLang;
+                  }
+                }
+              }
+              return supportLang.first;
+            },
+>>>>>>> 856db8e6d18503269cc2b7268e9767c2d0da440f
           );
         },
       ),
     );
   }
 }
+
+class ChangeLang with ChangeNotifier {}

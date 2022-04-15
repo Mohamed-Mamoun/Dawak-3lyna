@@ -4,6 +4,8 @@ import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../localizations/applocal.dart';
+
 class BoardingModal {
   final String image;
   final String title;
@@ -29,19 +31,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   List<BoardingModal> boarding = [
     BoardingModal(
       image: 'assets/images/img1.jpg',
-      title: 'Heathcare',
+      title: "الرعاية الصحية ",
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
       image: 'assets/images/img2.jpg',
-      title: 'Medicine',
+      title: "الدواء",
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
     BoardingModal(
       image: 'assets/images/img3.jpg',
-      title: 'Online Consultation',
+      title: " استشارة عبر الإنترنت",
       body:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ligula neque, vehicula eget semper sit amet',
     ),
@@ -54,7 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   //     value: true,
   //   ).then((value) {
   //     if (value) {
-  //       navigatAndFinish(context, ShopLoginScreen());
+  //       navigatAndFinish(context, LoginScreen());
   //     }
   //   });
   // }
@@ -74,7 +76,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 const MainPageScreen(),
               );
             },
-            text: 'SKIP',
+            text: 'تخطى',
           ),
         ],
       ),
@@ -91,12 +93,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 itemCount: boarding.length,
                 onPageChanged: (int index) {
                   if (index == boarding.length - 1) {
-                    print('Last');
                     setState(() {
                       isLast = true;
                     });
                   } else {
-                    print('not Last');
                     setState(() {
                       isLast = false;
                     });
