@@ -21,7 +21,12 @@
     "mn" : "Medicine Name",
     "ex" : "Expiration",
     "q" : "Quantity",
-    "submit" : "submit"
+    "submit" : "submit",
+    "addReq" : "Add New Request",
+    "fullName" : "Full Name",
+    "phone" : "Phone", 
+    "age" : "Age", 
+    "city" : "Select Your City"
 
 
 }

@@ -16,6 +16,8 @@ class UploadCubit extends Cubit<UploadState> {
   UploadCubit() : super(UploadInitial());
 
   static UploadCubit get(context) => BlocProvider.of(context);
+
+    List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
   final auth = FirebaseAuth.instance;
   bool loading = false;
   String valuechoose;

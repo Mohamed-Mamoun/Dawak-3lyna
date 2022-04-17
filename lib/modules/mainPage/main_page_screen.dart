@@ -1,5 +1,5 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
-import 'package:dawak_3lyna/modules/Patient/New%20Request/newRequest.dart';
+import 'package:dawak_3lyna/modules/Patient/new_request/new_request.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,9 +15,7 @@ class MainPageScreen extends StatelessWidget {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-        ),
+        appBar: AppBar(),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -35,7 +33,7 @@ class MainPageScreen extends StatelessWidget {
                 ),
                 Text(
                   "${getLang(context, "choses")}",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                   ),
