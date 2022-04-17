@@ -2,6 +2,7 @@ import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
+import 'package:dawak_3lyna/modules/Patient/New%20Request/cubit/upload_cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
@@ -55,6 +56,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (BuildContext context) => DashboardCubit(),
+        ),
+         BlocProvider(
+          create: (BuildContext context) => UploadCubit(),
         ),
       ],
       child: BlocConsumer<HomeCubit, HomeStates>(
