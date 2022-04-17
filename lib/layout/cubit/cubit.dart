@@ -29,11 +29,11 @@ class HomeCubit extends Cubit<HomeStates> {
     const ProfileScreen()
   ];
 
-  List<String> titles = [
-    'Home',
-    'Request',
-    'Profile',
-  ];
+  // List<String> titles = [
+  //   'Home',
+  //   'Request',
+  //   'Profile',
+  // ];
   List<Widget> dashboard_screens = [
     const Donors(),
     const Patients(),

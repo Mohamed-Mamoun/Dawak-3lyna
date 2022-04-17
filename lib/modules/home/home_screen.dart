@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,8 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  '  Medicine Donation',
+                Text(
+                  '${getLang(context, 'md')}',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -33,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 defaultFormField(
                   controller: nameController,
-                  hint: 'Medicine Name',
+                  hint: '${getLang(context, 'mn')}',
                   type: TextInputType.text,
                   prefix: Icons.medication,
                   isReadOnly: false,
@@ -48,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 defaultFormField(
                   controller: dateController,
-                  hint: 'Expiration',
+                  hint: '${getLang(context, 'ex')}',
                   type: TextInputType.text,
                   prefix: Icons.date_range,
                   isReadOnly: false,
@@ -77,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 defaultFormField(
                   controller: quantityController,
-                  hint: 'Quantity',
+                  hint: '${getLang(context, 'q')}',
                   type: TextInputType.number,
                   prefix: Icons.add,
                   isReadOnly: false,
@@ -99,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                   function: () {
                     if (formKey.currentState.validate()) {}
                   },
-                  text: 'submit',
+                  text: '${getLang(context, 'submit')}',
                 ),
                 const SizedBox(
                   height: 15.0,

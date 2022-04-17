@@ -1,4 +1,5 @@
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
+import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,25 +22,9 @@ class LayoutScreen extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              title: Text(
-                cubit.titles[cubit.currentIndex],
-              ),
-              // actions: [
-              //   cubit.currentIndex == 2
-              //       ? IconButton(
-              //           onPressed: () async {
-              //             await cubit.auth.signOut();
-              //             navigatTo(context, const MainPageScreen());
-              //           },
-              //           icon: const Icon(
-              //             Icons.exit_to_app,
-              //             color: Colors.red,
-              //             size: 35,
-              //           ))
-              //       : Text(
-              //           cubit.titles[cubit.currentIndex],
-              //         ),
-              // ],
+              // title: Text(
+              //   cubit.titles[cubit.currentIndex],
+              // ),
             ),
             body: cubit.screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
@@ -48,23 +33,23 @@ class LayoutScreen extends StatelessWidget {
                 cubit.changeBottom(index);
               },
               items: [
-                const BottomNavigationBarItem(
-                  icon: Icon(
+                BottomNavigationBarItem(
+                  icon: const Icon(
                     Icons.home,
                   ),
-                  label: 'Home',
+                  label: '${getLang(context, 'Home')}',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(
+                 BottomNavigationBarItem(
+                  icon: const Icon(
                     Icons.apps,
                   ),
-                  label: 'Request',
+                  label: '${getLang(context, 'Request')}',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(
+                 BottomNavigationBarItem(
+                  icon: const Icon(
                     Icons.person_rounded,
                   ),
-                  label: 'Profile',
+                  label: '${getLang(context, 'Profile')}',
                 ),
               ],
             ),

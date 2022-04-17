@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginErrorState) {
             showToast(
-              text: 'User Login Error',
+              text: '${getLang(context, 'megE')}',
               state: ToastStates.ERROR,
             );
           }
@@ -49,7 +49,7 @@ class LoginScreen extends StatelessWidget {
 
             print(state.uId);
             showToast(
-              text: ' User Login Success',
+              text: '${getLang(context, 'megS')}',
               state: ToastStates.SUCCESS,
             );
           }
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                        'Login',
+                        '${getLang(context, 'login')}',
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                         const SizedBox(
@@ -79,13 +79,13 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultFormField(
                           controller: emailController,
-                          hint: 'Email',
+                          hint:  '${getLang(context, 'Email')}',
                           type: TextInputType.emailAddress,
                           prefix: Icons.email_outlined,
                           isReadOnly: false,
                           validate: (String valaue) {
                             if (valaue.isEmpty) {
-                              return 'please enter your email address';
+                              return'${getLang(context, 'validate1')}';
                             }
                           },
                         ),
@@ -94,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         defaultFormField(
                           controller: passwordController,
-                          hint: 'Password',
+                          hint: '${getLang(context, 'Password')}',
                           type: TextInputType.visiblePassword,
                           prefix: Icons.lock_outline,
                           isPassword: LoginCubit.get(context).isPasswordShow,
@@ -104,7 +104,7 @@ class LoginScreen extends StatelessWidget {
                           },
                           validate: (String value) {
                             if (value.isEmpty) {
-                              return 'password must not be empty';
+                              return '${getLang(context, 'validate2')}';
                             }
                           },
                         ),
@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                                     password: passwordController.text);
                               }
                             },
-                            text: 'login',
+                            text: '${getLang(context, 'login')}',
                           ),
                           fallback: (context) => const Center(
                             child: CircularProgressIndicator(),
@@ -138,15 +138,15 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Don\'t have an account?',
+                             Text(
+                              '${getLang(context, 'account?')}',
                             ),
                             TextButton(
                               onPressed: () {
                                 navigatTo(context, RegisterScreen());
                               },
-                              child: const Text(
-                                'REGISTER NOW',
+                              child:  Text(
+                                '${getLang(context, 'REGISTER NOW')}'
                               ),
                             ),
                           ],

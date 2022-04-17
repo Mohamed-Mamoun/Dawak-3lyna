@@ -18,11 +18,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'localizations/applocal.dart';
 
-SharedPreferences sharedPref;
+//SharedPreferences sharedPref;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  sharedPref = await SharedPreferences.getInstance();
+  //sharedPref = await SharedPreferences.getInstance();
   Widget widget;
   //MyBlocObserver();
   await CacheHelper.init();
