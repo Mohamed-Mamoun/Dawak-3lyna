@@ -16,6 +16,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'localizations/applocal.dart';
+import 'modules/Patient/new_request/cubit/upload_cubit.dart';
 
 //SharedPreferences sharedPref;
 void main() async {
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (BuildContext context) => HomeCubit(),
+        ),
+         BlocProvider(
+          create: (BuildContext context) => UploadCubit(),
         ),
         BlocProvider(
           create: (BuildContext context) => DashboardCubit(),
