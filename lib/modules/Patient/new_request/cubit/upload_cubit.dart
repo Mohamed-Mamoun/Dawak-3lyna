@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class UploadCubit extends Cubit<UploadState> {
 
   static UploadCubit get(context) => BlocProvider.of(context);
 
-    List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
+  List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
   final auth = FirebaseAuth.instance;
   bool loading = false;
   String valuechoose;
@@ -26,6 +27,15 @@ class UploadCubit extends Cubit<UploadState> {
   File image;
   String imageName = '';
   XFile pickedImage;
+  final medicineName = TextEditingController();
+
+  final name = TextEditingController();
+
+  final phoneNumber = TextEditingController();
+
+  final age = TextEditingController();
+
+  final formKey = GlobalKey<FormState>();
   final patient = FirebaseFirestore.instance.collection('patient');
   var downloadUrl;
 
@@ -68,7 +78,7 @@ class UploadCubit extends Cubit<UploadState> {
 
   // Function To change the value of DropDownButton
   void changevalue(dynamic newValue) {
-    valuechoose == newValue;
+    valuechoose = newValue;
     emit(ChangeValueState());
   } // ****************************************************
 
@@ -89,4 +99,46 @@ class UploadCubit extends Cubit<UploadState> {
       'Image_url': image.toString()
     });
   } // ****************************************************
+
+  // Function To Validate The Patient form and upload
+  Future validate_and_upload() async {
+    if (formKey.currentState.validate()) {
+      if (valuechoose != null) {
+        if (imageName != '') {
+          try {
+            loadingOn();
+            await uploudImage();
+            await saveData(
+              name,
+              phoneNumber,
+              age,
+              medicineName,
+              valuechoose,
+              downloadUrl,
+            ).whenComplete(
+              () => {
+                loadingOf(),
+                showToast(
+                  text: 'Your Request uploaded Successfully',
+                  state: ToastStates.SUCCESS,
+                ),
+              },
+            );
+          } catch (e) {
+            print(e);
+          }
+        } else {
+          showToast(
+            text: 'Please Pick Prescription',
+            state: ToastStates.ERROR,
+          );
+        }
+      } else {
+        showToast(
+          text: 'Select Your City',
+          state: ToastStates.ERROR,
+        );
+      }
+    }
+  }
 }

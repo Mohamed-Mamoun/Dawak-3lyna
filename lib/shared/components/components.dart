@@ -1,24 +1,26 @@
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-// class Loaing extends StatelessWidget {
-//   const Loaing({ Key key }) : super(key: key);
+ class Loading extends StatelessWidget {
+   const Loading({ Key key }) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       child: const Center(
-//         child: SpinKitPianoWave(
-//           color: myColor,
-//         ),
-//       ),
-//     );
-//   }
-// }
-// Button
+   @override
+   Widget build(BuildContext context) {
+     return Container(
+       color: Colors.white,
+       child: const Center(
+         child: SpinKitPouringHourGlass(
+           size: 70.0,
+           color: myColor,
+         ),
+       ),
+     );
+   }
+}
+
 Widget defaultButton({
   double width = double.infinity,
   Color background = myColor,
