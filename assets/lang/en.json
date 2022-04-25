@@ -9,6 +9,7 @@
     "Email" : "Email",
     "Password": "Password",
     "account?" : "'don't have an account?",
+    "account2?" : "Already Have an account?",
     "REGISTER NOW" :"REGISTER NOW",
     " validate1" : "please enter your email address",
     " validate2" : "password must not be empty",
@@ -26,7 +27,17 @@
     "fullName" : "Full Name",
     "phone" : "Phone", 
     "age" : "Age", 
-    "city" : "Select Your City"
+    "mnMeg" : "Enter a medicine Name", 
+    "ageMeg" : "Enter Your Age", 
+    "city" : "Select Your City",
+    "meg1" : "Please Enter your name",
+    "meg11" : "Enter Your Full Name",
+    "meg2" : "Please Enter your email ",
+    "meg3" : "Please Enter your phone number",
+    "meg33" : "Enter a correct Phone Number",
+    "meg4" : "Please Enter your password",
+    "exMeg": "please enter your Expiration",
+    "qMeg": "please enter your Quantity"
 
 
 }

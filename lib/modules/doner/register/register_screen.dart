@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/Verify%20Email%20Page/verifyEmail.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/doner/register/cubit/signup_cubit.dart';
@@ -45,38 +46,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'SIGN UP',
+                          '${getLang(context, 'REGISTER NOW')}',
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
                         const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
-                            hint: 'Full Name',
+                            hint: '${getLang(context, 'fullName')}',
                             fill: Colors.white,
                             controller: namecontroller,
                             type: TextInputType.name,
                             prefix: Icons.person,
                             validate: (String value) {
                               if (value.isEmpty) {
-                                return 'Please Enter your Name';
+                                return '${getLang(context, 'meg1')}';
                               }
                               if (value.toString().length < 14) {
-                                return 'Enter Your Full Name';
+                                return '${getLang(context, 'meg11')}';
                               }
                             }),
                         const SizedBox(
                           height: 15,
                         ),
                         defaultFormField(
-                          hint: 'Email',
+                          hint: '${getLang(context, 'Email')}',
                           fill: Colors.white,
                           controller: emailcontroller,
                           type: TextInputType.emailAddress,
                           prefix: Icons.email,
                           validate: (String value) {
                             if (value.isEmpty) {
-                              return 'Please Enter your Email';
+                              return '${getLang(context, 'meg2')}';
                             }
                           },
                         ),
@@ -84,17 +85,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 15,
                         ),
                         defaultFormField(
-                          hint: 'Phone ',
+                          hint: '${getLang(context, 'phone')}',
                           fill: Colors.white,
                           controller: numbercontroller,
                           type: TextInputType.number,
                           prefix: Icons.phone,
                           validate: (String value) {
                             if (value.isEmpty) {
-                              return 'Please Enter your Phone Number';
+                              return '${getLang(context, 'meg3')}';
                             }
                             if (value.toString().length < 10) {
-                              return 'Enter a correct Phone Number';
+                              return '${getLang(context, 'meg33')}';
                             }
                           },
                         ),
@@ -102,14 +103,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           height: 15,
                         ),
                         defaultFormField(
-                          hint: 'Password',
+                          hint: '${getLang(context, 'Password')}',
                           fill: Colors.white,
                           controller: passwordcontroller,
                           type: TextInputType.visiblePassword,
                           prefix: Icons.lock,
                           validate: (String value) {
                             if (value.isEmpty) {
-                              return 'Please Enter your Password';
+                              return'${getLang(context, 'meg4')}';
                             }
                           },
                         ),
@@ -135,8 +136,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               }).toList(),
                               isExpanded: true,
-                              hint: const Text(
-                                ' Select Your City',
+                              hint: Text(
+                                '${getLang(context, 'city')}',
                               ),
                               value: valuechoose,
                               onChanged: (newValue) {
@@ -165,18 +166,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 navigatTo(context, const VerifyEmail());
                               } else {
                                 showToast(
-                                    text: 'Select Your City',
+                                    text:  '${getLang(context, 'city')}',
                                     state: ToastStates.ERROR);
                               }
                             }
                           },
-                          text: 'Sign Up',
+                          text: '${getLang(context, 'REGISTER NOW')}',
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Already Have an account?',
+                            Text(
+                              '${getLang(context, 'account2?')}',
                             ),
                             TextButton(
                               onPressed: () {
@@ -185,8 +186,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   LoginScreen(),
                                 );
                               },
-                              child: const Text(
-                                'Login',
+                              child: Text(
+                                '${getLang(context, 'login')}',
                               ),
                             ),
                           ],

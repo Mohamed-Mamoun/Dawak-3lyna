@@ -8,8 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class NewRequest extends StatelessWidget {
   NewRequest({Key key}) : super(key: key);
 
- 
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

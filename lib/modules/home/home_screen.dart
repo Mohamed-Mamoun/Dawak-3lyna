@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                   isReadOnly: false,
                   validate: (String valaue) {
                     if (valaue.isEmpty) {
-                      return 'please enter your Medicine Name';
+                      return '${getLang(context, 'mnMeg')}';
                     }
                   },
                 ),
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   isReadOnly: false,
                   validate: (String valaue) {
                     if (valaue.isEmpty) {
-                      return 'please enter your Expiration';
+                      return '${getLang(context, 'exMeg')}';
                     }
                   },
                   onTap: () {
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                   isReadOnly: false,
                   validate: (String valaue) {
                     if (valaue.isEmpty) {
-                      return 'please enter your Quantity';
+                      return '${getLang(context, 'qMeg')}';
                     }
                   },
                 ),
