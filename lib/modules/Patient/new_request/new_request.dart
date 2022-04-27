@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class NewRequest extends StatelessWidget {
-  NewRequest({Key key}) : super(key: key);
+const NewRequest({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

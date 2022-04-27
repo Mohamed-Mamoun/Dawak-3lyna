@@ -6,24 +6,9 @@ import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({Key key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+ const RegisterScreen({Key key}) : super(key: key);
 
-  @override
-  _RegisterScreenState createState() => _RegisterScreenState();
-}
-
-class _RegisterScreenState extends State<RegisterScreen> {
-  var formKey = GlobalKey<FormState>();
-
-  var namecontroller = TextEditingController();
-  var numbercontroller = TextEditingController();
-  var emailcontroller = TextEditingController();
-  var passwordcontroller = TextEditingController();
-
-  List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
-
-  String valuechoose;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -31,7 +16,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {},
         builder: (context, state) {
-          final cubit = SignupCubit();
+          final cubit = SignupCubit.get(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -41,7 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Form(
-                    key: formKey,
+                    key: cubit.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -55,7 +40,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         defaultFormField(
                             hint: '${getLang(context, 'fullName')}',
                             fill: Colors.white,
-                            controller: namecontroller,
+                            controller: cubit.namecontroller,
                             type: TextInputType.name,
                             prefix: Icons.person,
                             validate: (String value) {
@@ -72,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         defaultFormField(
                           hint: '${getLang(context, 'Email')}',
                           fill: Colors.white,
-                          controller: emailcontroller,
+                          controller: cubit.emailcontroller,
                           type: TextInputType.emailAddress,
                           prefix: Icons.email,
                           validate: (String value) {
@@ -87,7 +72,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         defaultFormField(
                           hint: '${getLang(context, 'phone')}',
                           fill: Colors.white,
-                          controller: numbercontroller,
+                          controller: cubit.numbercontroller,
                           type: TextInputType.number,
                           prefix: Icons.phone,
                           validate: (String value) {
@@ -105,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         defaultFormField(
                           hint: '${getLang(context, 'Password')}',
                           fill: Colors.white,
-                          controller: passwordcontroller,
+                          controller: cubit.passwordcontroller,
                           type: TextInputType.visiblePassword,
                           prefix: Icons.lock,
                           validate: (String value) {
@@ -129,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: DropdownButton(
                               underline: Container(),
-                              items: lisItems.map((itemvalue) {
+                              items: cubit.lisItems.map((itemvalue) {
                                 return DropdownMenuItem(
                                   value: itemvalue,
                                   child: Text(itemvalue),
@@ -139,13 +124,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               hint: Text(
                                 '${getLang(context, 'city')}',
                               ),
-                              value: valuechoose,
+                              value: cubit.valuechoose,
                               onChanged: (newValue) {
-                                setState(
-                                  () {
-                                    valuechoose = newValue;
-                                  },
-                                );
+                                    cubit.changeCity(newValue);
                               },
                             ),
                           ),
@@ -155,14 +136,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         defaultButton(
                           function: () async {
-                            if (formKey.currentState.validate()) {
-                              if (valuechoose != null) {
+                            if (cubit.formKey.currentState.validate()) {
+                              if (cubit.valuechoose != null) {
                                 await cubit.signUp_User(
-                                    emailcontroller.text.trim(),
-                                    passwordcontroller.text.trim(),
-                                    namecontroller.text,
-                                    numbercontroller.text,
-                                    valuechoose);
+                                    cubit.emailcontroller.text.trim(),
+                                    cubit.passwordcontroller.text.trim(),
+                                    cubit.namecontroller.text,
+                                    cubit.numbercontroller.text,
+                                    cubit.valuechoose);
                                 navigatTo(context, const VerifyEmail());
                               } else {
                                 showToast(
