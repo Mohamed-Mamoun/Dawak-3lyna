@@ -8,8 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
-
 import 'package:path/path.dart';
 part 'upload_state.dart';
 
@@ -42,7 +40,7 @@ class UploadCubit extends Cubit<UploadState> {
   // Function To Pick an image From Camera
   Future pickImageFromCamera() async {
     pickedImage = await picker.pickImage(source: ImageSource.camera);
-
+    image = File(pickedImage.path);
     imageName = basename(pickedImage.path);
     emit(PickImageFromCameraState());
   } // ****************************************************
@@ -122,6 +120,12 @@ class UploadCubit extends Cubit<UploadState> {
                   text: 'Your Request uploaded Successfully',
                   state: ToastStates.SUCCESS,
                 ),
+                name.clear(),
+                phoneNumber.clear(),
+                age.clear(),
+                medicineName.clear(),
+                valuechoose = null,
+                imageName = ''
               },
             );
           } catch (e) {

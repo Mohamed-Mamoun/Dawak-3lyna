@@ -1,7 +1,9 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
+import 'package:dawak_3lyna/modules/Patient/new_request/cubit/upload_cubit.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,7 +15,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return BlocConsumer<UploadCubit, UploadState>(
+      listener: (context, state) {},
+      builder: (context, state){
+        final cubit = UploadCubit.get(context);
+        return  Center(
       child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -24,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Text(
                   '${getLang(context, 'md')}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
                   ),
@@ -88,8 +94,46 @@ class HomeScreen extends StatelessWidget {
                     }
                   },
                 ),
-                const SizedBox(
-                  height: 15.0,
+                const SizedBox(height: 15,),
+                ListTile(
+                  leading: const Text(
+                    'Prescription',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  trailing: SizedBox(
+                    width: 100,
+                    child: Row(
+                      children: [
+                        IconButton(
+                          onPressed: () async {
+                            cubit.pickImageFromCamera();
+                          },
+                          icon: const CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.camera_alt),
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () async {
+                            cubit.pickImageFromGallery();
+                          },
+                          icon: const CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Icon(Icons.image),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    cubit.imageName.split('/').last,
+                    style: const TextStyle(fontSize: 12),
+                  ),
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -103,10 +147,7 @@ class HomeScreen extends StatelessWidget {
                   text: '${getLang(context, 'submit')}',
                 ),
                 const SizedBox(
-                  height: 15.0,
-                ),
-                const SizedBox(
-                  height: 15.0,
+                  height: 30.0,
                 ),
               ],
             ),
@@ -114,5 +155,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+      },
+      );
   }
 }

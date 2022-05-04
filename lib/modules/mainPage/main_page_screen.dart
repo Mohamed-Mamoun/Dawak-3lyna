@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/Patient/new_request/new_request.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
@@ -15,7 +16,9 @@ class MainPageScreen extends StatelessWidget {
         return false;
       },
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+        ),
         body: SafeArea(
           child: Center(
             child: Column(
@@ -47,7 +50,7 @@ class MainPageScreen extends StatelessWidget {
                     await FirebaseAuth.instance.signInAnonymously();
                     navigatTo(
                       context,
-                      NewRequest(),
+                      Dashboard_Layout(),
                     );
                   },
                   text: "${getLang(context, "Patient")}",
@@ -58,7 +61,7 @@ class MainPageScreen extends StatelessWidget {
                 defaultButton(
                     width: 200,
                     function: () {
-                      navigatAndFinish(
+                      navigatTo(
                         context,
                         LoginScreen(),
                       );

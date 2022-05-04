@@ -15,28 +15,56 @@ class Donors extends StatelessWidget {
           var cubit = DashboardCubit.get(context);
           return Scaffold(
             body: StreamBuilder<QuerySnapshot>(
-              stream: cubit.donors,
-              builder: (context, snapshot) {
-                 if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator(color: myColor,));
-                  }
-                  if(snapshot.connectionState == ConnectionState.none){
+                stream: cubit.donors,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(
-                      child: Text('No Internet Connection',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        child: CircularProgressIndicator(
+                      color: myColor,
+                    ));
+                  }
+                  if (snapshot.connectionState == ConnectionState.none) {
+                    return const Center(
+                      child: Text(
+                        'No Internet Connection',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     );
                   }
-                var data = snapshot.requireData;
-                return ListView.builder(
-                   itemCount: data.size,
-                  itemBuilder: (snapshot, index){
-                  return ListTile(
-                    title: Text(data.docs[index]['Full_Name']),
-                  );}
-                );
-              }
-            ),
+                  var data = snapshot.requireData;
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                      itemCount: data.size,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration:  BoxDecoration(
+                              color: myColor[300],
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data.docs[index]['Full_Name'],
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }),
           );
         });
   }

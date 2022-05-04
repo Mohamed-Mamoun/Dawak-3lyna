@@ -1,8 +1,6 @@
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/localizations/applocal.dart';
-import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
