@@ -1,5 +1,5 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
-import 'package:dawak_3lyna/modules/Patient/new_request/cubit/upload_cubit.dart';
+import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';

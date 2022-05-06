@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Dashboard_Layout extends StatelessWidget {
-  const Dashboard_Layout({ Key key }) : super(key: key);
+  const Dashboard_Layout({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +14,16 @@ class Dashboard_Layout extends StatelessWidget {
         var cubit = HomeCubit.get(context);
         return WillPopScope(
           onWillPop: () async {
-            showToast(text: 'SignOut', state: ToastStates.ERROR);
+            showToast(
+              text: 'SignOut',
+              state: ToastStates.ERROR,
+            );
             return false;
           },
           child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              title: const Text(
-               'Dashboard'
-              ),
-             
+              title: const Text('Dashboard'),
             ),
             body: cubit.dashboard_screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
@@ -32,8 +32,8 @@ class Dashboard_Layout extends StatelessWidget {
                 cubit.changeBottom(index);
               },
               items: [
-                 BottomNavigationBarItem(
-                  icon: const Icon(
+                const BottomNavigationBarItem(
+                  icon: Icon(
                     Icons.home,
                   ),
                   label: 'Doners',
@@ -44,7 +44,6 @@ class Dashboard_Layout extends StatelessWidget {
                   ),
                   label: 'Patients',
                 ),
-              
               ],
             ),
           ),

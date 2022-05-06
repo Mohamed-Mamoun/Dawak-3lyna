@@ -1,13 +1,13 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
-import 'package:dawak_3lyna/modules/Verify%20Email%20Page/verifyEmail.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/doner/register/cubit/signup_cubit.dart';
+import 'package:dawak_3lyna/modules/verify_email/verify_email_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreen extends StatelessWidget {
- const RegisterScreen({Key key}) : super(key: key);
+  const RegisterScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
                           prefix: Icons.lock,
                           validate: (String value) {
                             if (value.isEmpty) {
-                              return'${getLang(context, 'meg4')}';
+                              return '${getLang(context, 'meg4')}';
                             }
                           },
                         ),
@@ -126,7 +126,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                               value: cubit.valuechoose,
                               onChanged: (newValue) {
-                                    cubit.changeCity(newValue);
+                                cubit.changeCity(newValue);
                               },
                             ),
                           ),
@@ -144,11 +144,15 @@ class RegisterScreen extends StatelessWidget {
                                     cubit.namecontroller.text,
                                     cubit.numbercontroller.text,
                                     cubit.valuechoose);
-                                navigatTo(context, const VerifyEmail());
+                                navigatTo(
+                                  context,
+                                  const VerifyEmail(),
+                                );
                               } else {
                                 showToast(
-                                    text:  '${getLang(context, 'city')}',
-                                    state: ToastStates.ERROR);
+                                  text: '${getLang(context, 'city')}',
+                                  state: ToastStates.ERROR,
+                                );
                               }
                             }
                           },
