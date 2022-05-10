@@ -37,7 +37,8 @@
     "meg33" : "Enter a correct Phone Number",
     "meg4" : "Please Enter your password",
     "exMeg": "please enter your Expiration",
-    "qMeg": "please enter your Quantity"
+    "qMeg": "please enter your Quantity",
+    "prescription": "Attach the prescription"
 
 
 }

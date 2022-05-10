@@ -3,6 +3,7 @@ import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
 class NewRequest extends StatelessWidget {
@@ -37,10 +38,10 @@ class NewRequest extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      '${getLang(context, 'addReq')}',
-                                      style: Theme.of(context).textTheme.bodyText1
-                                    ),
+                                    Text('${getLang(context, 'addReq')}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1),
                                     const SizedBox(
                                       height: 15,
                                     ),
@@ -51,10 +52,10 @@ class NewRequest extends StatelessWidget {
                                       prefix: Icons.person,
                                       validate: (value) {
                                         if (value.isEmpty) {
-                                          return 'Enter Your Name';
+                                          return '${getLang(context, 'meg1')}';
                                         }
                                         if (value.toString().length < 14) {
-                                          return 'Enter Your Full Name';
+                                          return '${getLang(context, 'meg11')}';
                                         }
                                       },
                                     ),
@@ -68,10 +69,10 @@ class NewRequest extends StatelessWidget {
                                       prefix: Icons.phone,
                                       validate: (value) {
                                         if (value.isEmpty) {
-                                          return 'Enter Your Phone Number';
+                                          return '${getLang(context, 'meg3')}';
                                         }
                                         if (value.toString().length < 10) {
-                                          return 'Enter a correct Phone Number';
+                                          return '${getLang(context, 'meg33')}';
                                         }
                                       },
                                     ),
@@ -85,7 +86,7 @@ class NewRequest extends StatelessWidget {
                                       prefix: Icons.date_range,
                                       validate: (value) {
                                         if (value.isEmpty) {
-                                          return 'Enter Your Age';
+                                          return '${getLang(context, 'ageMeg')}';
                                         }
                                       },
                                     ),
@@ -99,7 +100,7 @@ class NewRequest extends StatelessWidget {
                                       prefix: Icons.medication,
                                       validate: (value) {
                                         if (value.isEmpty) {
-                                          return 'Enter a medicine Name';
+                                          return '${getLang(context, 'mnMeg')}';
                                         }
                                       },
                                     ),
@@ -119,7 +120,8 @@ class NewRequest extends StatelessWidget {
                                             horizontal: 5),
                                         child: DropdownButton(
                                           underline: Container(),
-                                          items: cubit.lisItems.map((itemvalue) {
+                                          items:
+                                              cubit.lisItems.map((itemvalue) {
                                             return DropdownMenuItem(
                                               value: itemvalue,
                                               child: Text(itemvalue),
@@ -136,38 +138,77 @@ class NewRequest extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    ListTile(
-                                      leading: const Text(
-                                        'Prescription',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      trailing: SizedBox(
-                                        width: 100,
-                                        child: Row(
-                                          children: [
-                                            IconButton(
-                                              onPressed: () async {
-                                                cubit.pickImageFromCamera();
-                                              },
-                                              icon: const CircleAvatar(
-                                                backgroundColor: Colors.white,
-                                                child: Icon(Icons.camera_alt),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            '${getLang(context, 'prescription')}',
+                                          ),
+                                          const Spacer(),
+//__________________________________ Change betwen Camera and Gallery___________
+                                          Row(
+                                            children: [
+                                              IconButton(
+                                                icon: const CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  child: Icon(
+                                                    Icons.camera_alt,
+                                                  ),
+                                                ),
+                                                onPressed: () async {
+                                                  showModalBottomSheet(
+                                                    context: context,
+                                                    builder: (context) {
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        children: [
+                                                          ListTile(
+                                                            leading: const Icon(
+                                                              Icons.camera_alt,
+                                                            ),
+                                                            title: const Text(
+                                                              'Camera',
+                                                            ),
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              cubit.pickImages(
+                                                                ImageSource
+                                                                    .camera,
+                                                              );
+                                                            },
+                                                          ),
+                                                          ListTile(
+                                                            leading: const Icon(
+                                                              Icons.image,
+                                                            ),
+                                                            title: const Text(
+                                                              'Gallery',
+                                                            ),
+                                                            onTap: () {
+                                                              Navigator.pop(
+                                                                context,
+                                                              );
+                                                              cubit.pickImages(
+                                                                ImageSource
+                                                                    .gallery,
+                                                              );
+                                                            },
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                },
                                               ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () async {
-                                                cubit.pickImageFromGallery();
-                                              },
-                                              icon: const CircleAvatar(
-                                                backgroundColor: Colors.white,
-                                                child: Icon(Icons.image),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                            ],
+                                          ),
+//______________________________________________________________________________
+                                        ],
                                       ),
                                     ),
                                     Center(
