@@ -101,48 +101,49 @@ class UploadCubit extends Cubit<UploadState> {
   // Function To Validate The Patient form and upload
   Future validate_and_upload() async {
     if (formKey.currentState.validate()) {
-      if (valuechoose != null) {
-        if (imageName != '') {
-          try {
-            loadingOn();
-            await uploudImage();
-            await saveData(
-              name,
-              phoneNumber,
-              age,
-              medicineName,
-              valuechoose,
-              downloadUrl,
-            ).whenComplete(
-              () => {
-                loadingOf(),
-                showToast(
-                  text: 'Your Request uploaded Successfully',
-                  state: ToastStates.SUCCESS,
-                ),
-                name.clear(),
-                phoneNumber.clear(),
-                age.clear(),
-                medicineName.clear(),
-                valuechoose = null,
-                imageName = ''
-              },
-            );
-          } catch (e) {
-            print(e);
-          }
-        } else {
+      return false;
+    }
+
+    if (valuechoose = null) {
+      return showToast(
+        text: 'Select Your City',
+        state: ToastStates.ERROR,
+      );
+    }
+
+    if (imageName == '') {
+      return showToast(
+        text: 'Please Pick Prescription',
+        state: ToastStates.ERROR,
+      );
+    }
+    try {
+      emit(LoadingOnState());
+      await uploudImage();
+      await saveData(
+        name,
+        phoneNumber,
+        age,
+        medicineName,
+        valuechoose,
+        downloadUrl,
+      ).whenComplete(
+        () => {
+          emit(LoadingOfState()),
           showToast(
-            text: 'Please Pick Prescription',
-            state: ToastStates.ERROR,
-          );
-        }
-      } else {
-        showToast(
-          text: 'Select Your City',
-          state: ToastStates.ERROR,
-        );
-      }
+            text: 'Your Request uploaded Successfully',
+            state: ToastStates.SUCCESS,
+          ),
+          name.clear(),
+          phoneNumber.clear(),
+          age.clear(),
+          medicineName.clear(),
+          valuechoose = null,
+          imageName = ''
+        },
+      );
+    } catch (e) {
+      print(e);
     }
   }
 }

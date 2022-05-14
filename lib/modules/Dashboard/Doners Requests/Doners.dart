@@ -28,7 +28,7 @@ class Donors extends StatelessWidget {
                       child: Text(
                         'No Internet Connection',
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold, color: myColor),
                       ),
                     );
                   }
@@ -44,8 +44,11 @@ class Donors extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            decoration:  BoxDecoration(
-                              color: myColor[300],
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: myColor,
+                                width: 4.0,
+                              ),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Padding(
@@ -53,9 +56,15 @@ class Donors extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(data.docs[index]['Full_Name'],
-                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold ),
+                               const  Icon(Icons.person),
+                             const SizedBox(height: 3.0,),
+                                  Text(
+                                    data.docs[index]['Full_Name'],
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
                                   ),
+                                 
                                 ],
                               ),
                             ),

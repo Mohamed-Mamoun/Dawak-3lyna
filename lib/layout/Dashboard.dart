@@ -20,8 +20,9 @@ class Dashboard_Layout extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              title: const Text(
-               'Dashboard'
+              title: Text(
+               'Dashboard',
+              style: Theme.of(context).textTheme.bodyText1,
               ),
              
             ),
@@ -31,9 +32,11 @@ class Dashboard_Layout extends StatelessWidget {
               onTap: (int index) {
                 cubit.changeBottom(index);
               },
+              
+              // ignore: prefer_const_literals_to_create_immutables
               items: [
-                 BottomNavigationBarItem(
-                  icon: const Icon(
+                 const BottomNavigationBarItem(
+                  icon: Icon(
                     Icons.home,
                   ),
                   label: 'Doners',

@@ -24,7 +24,7 @@ class Patients extends StatelessWidget {
                   if(snapshot.connectionState == ConnectionState.none){
                     return const Center(
                       child: Text('No Internet Connection',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: myColor),
                       ),
                     );
                   }
