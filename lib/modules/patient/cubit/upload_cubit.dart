@@ -37,21 +37,21 @@ class UploadCubit extends Cubit<UploadState> {
   final patient = FirebaseFirestore.instance.collection('patient');
   var downloadUrl;
 
-  // Function To Pick an image From Camera
-  Future pickImageFromCamera() async {
-    pickedImage = await picker.pickImage(source: ImageSource.camera);
+  // Function To Pick an image 
+  Future pickImages(ImageSource source ) async {
+    pickedImage = await picker.pickImage(source: source);
     image = File(pickedImage.path);
     imageName = basename(pickedImage.path);
     emit(PickImageFromCameraState());
   } // ****************************************************
 
 // Function To Pick an image From Gallery
-  Future pickImageFromGallery() async {
-    pickedImage = await picker.pickImage(source: ImageSource.gallery);
-    image = File(pickedImage.path);
-    imageName = basename(pickedImage.path);
-    emit(PickImageFromGalleryState());
-  } // ****************************************************
+  // Future pickImageFromGallery() async {
+  //   pickedImage = await picker.pickImage(source: ImageSource.gallery);
+  //   image = File(pickedImage.path);
+  //   imageName = basename(pickedImage.path);
+  //   emit(PickImageFromGalleryState());
+  // } // ****************************************************
 
   // Function To Upload Image To Storage
   Future uploudImage() async {

@@ -1,22 +1,18 @@
-import 'package:dawak_3lyna/layout/Dashboard.dart';
 import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
-import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
+import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
+import 'package:dawak_3lyna/shared/bolc_observer.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
-import 'package:dawak_3lyna/shared/cubit/cubit.dart';
-import 'package:dawak_3lyna/shared/cubit/states.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'localizations/applocal.dart';
-import 'modules/Patient/new_request/cubit/upload_cubit.dart';
 
 //SharedPreferences sharedPref;
 void main() async {
@@ -29,12 +25,12 @@ void main() async {
 
   uId = CacheHelper.getData(key: 'uId');
 
-  print(uId);
+  // print(uId);
 
   if (uId != null) {
-    widget = LayoutScreen();
+    widget = const LayoutScreen();
   } else {
-    widget = MainPageScreen();
+    widget = const MainPageScreen();
   }
 
   runApp(MyApp(
@@ -54,7 +50,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (BuildContext context) => HomeCubit(),
         ),
-         BlocProvider(
+        BlocProvider(
           create: (BuildContext context) => UploadCubit(),
         ),
         BlocProvider(
@@ -70,7 +66,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme,
             home: startWidget,
             localizationsDelegates: [
-           AppLocale.delegate,
+              AppLocale.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate
             ],
@@ -78,6 +74,7 @@ class MyApp extends StatelessWidget {
               const Locale("en", ""),
               const Locale("ar", ""),
             ],
+            locale: const Locale("ar", ""),
             localeResolutionCallback: (currentLang, supportLang) {
               if (currentLang != null) {
                 for (Locale locale in supportLang) {

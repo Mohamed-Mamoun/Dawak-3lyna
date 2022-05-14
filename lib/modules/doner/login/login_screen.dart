@@ -4,8 +4,6 @@ import 'package:dawak_3lyna/modules/doner/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
-import 'package:dawak_3lyna/shared/components/constants.dart';
-import 'package:dawak_3lyna/shared/cubit/cubit.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
