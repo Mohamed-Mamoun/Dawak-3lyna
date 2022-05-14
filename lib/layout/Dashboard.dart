@@ -23,15 +23,11 @@ class Dashboard_Layout extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-<<<<<<< HEAD
               title: Text(
                'Dashboard',
               style: Theme.of(context).textTheme.bodyText1,
               ),
              
-=======
-              title: const Text('Dashboard'),
->>>>>>> 4f3b04b65b8d2c5f802bbc30bb89e73b6511110e
             ),
             body: cubit.dashboard_screens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
@@ -42,11 +38,7 @@ class Dashboard_Layout extends StatelessWidget {
               
               // ignore: prefer_const_literals_to_create_immutables
               items: [
-<<<<<<< HEAD
                  const BottomNavigationBarItem(
-=======
-                const BottomNavigationBarItem(
->>>>>>> 4f3b04b65b8d2c5f802bbc30bb89e73b6511110e
                   icon: Icon(
                     Icons.home,
                   ),
