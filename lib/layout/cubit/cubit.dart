@@ -18,8 +18,7 @@ class HomeCubit extends Cubit<HomeStates> {
   static HomeCubit get(context) => BlocProvider.of(context);
 
   final auth = FirebaseAuth.instance;
-  final screenHieght = MediaQuery.of(context).size.height;
-  final screenWidth = MediaQuery.of(context).size.height;
+
 
   List<Widget> screens = [
     HomeScreen(),

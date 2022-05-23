@@ -15,7 +15,7 @@ class UploadCubit extends Cubit<UploadState> {
   UploadCubit() : super(UploadInitial());
 
   static UploadCubit get(context) => BlocProvider.of(context);
-
+  
   List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
   final auth = FirebaseAuth.instance;
   bool loading = false;
@@ -37,8 +37,8 @@ class UploadCubit extends Cubit<UploadState> {
   final patient = FirebaseFirestore.instance.collection('patient');
   var downloadUrl;
 
-  // Function To Pick an image 
-  Future pickImages(ImageSource source ) async {
+  // Function To Pick an image
+  Future pickImages(ImageSource source) async {
     pickedImage = await picker.pickImage(source: source);
     image = File(pickedImage.path);
     imageName = basename(pickedImage.path);
@@ -100,25 +100,28 @@ class UploadCubit extends Cubit<UploadState> {
 
   // Function To Validate The Patient form and upload
   Future validate_and_upload() async {
-    if (formKey.currentState.validate()) {
+    if (!formKey.currentState.validate()) {
       return false;
     }
 
-    if (valuechoose = null) {
-      return showToast(
+    if (valuechoose == null) {
+      showToast(
         text: 'Select Your City',
         state: ToastStates.ERROR,
       );
+      return false;
     }
 
     if (imageName == '') {
-      return showToast(
+      showToast(
         text: 'Please Pick Prescription',
         state: ToastStates.ERROR,
       );
+      return false;
     }
+    else{
     try {
-      emit(LoadingOnState());
+      loadingOn();
       await uploudImage();
       await saveData(
         name,
@@ -129,7 +132,7 @@ class UploadCubit extends Cubit<UploadState> {
         downloadUrl,
       ).whenComplete(
         () => {
-          emit(LoadingOfState()),
+          loadingOf(),
           showToast(
             text: 'Your Request uploaded Successfully',
             state: ToastStates.SUCCESS,
@@ -139,11 +142,26 @@ class UploadCubit extends Cubit<UploadState> {
           age.clear(),
           medicineName.clear(),
           valuechoose = null,
-          imageName = ''
+          imageName = '',
         },
       );
     } catch (e) {
-      print(e);
+      showToast(text: 'Check your Internet Connection', state: ToastStates.ERROR);
+    }
+    }
+  }
+
+  // Function To Sign in without account
+  Future signIn_Anounumasly() async {
+    loadingOn();
+    try {
+    await FirebaseAuth.instance.signInAnonymously();
+     loadingOf();
+    } on FirebaseAuthException {
+      loadingOf();
+      showToast(
+          text: 'Please Check Your Internet Connection',
+          state: ToastStates.ERROR);
     }
   }
 }

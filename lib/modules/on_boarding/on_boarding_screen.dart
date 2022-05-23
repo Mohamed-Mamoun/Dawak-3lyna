@@ -73,7 +73,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             function: () {
               navigatAndFinish(
                 context,
-                const MainPageScreen(),
+                MainPageScreen(),
               );
             },
             text: 'تخطى',
@@ -128,7 +128,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     if (isLast) {
                       navigatAndFinish(
                         context,
-                        const MainPageScreen(),
+                        MainPageScreen(),
                       );
                     } else {
                       boardController.nextPage(

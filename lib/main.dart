@@ -30,7 +30,7 @@ void main() async {
   if (uId != null) {
     widget = const LayoutScreen();
   } else {
-    widget = const MainPageScreen();
+    widget =  MainPageScreen();
   }
 
   runApp(MyApp(
