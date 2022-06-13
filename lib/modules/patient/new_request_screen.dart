@@ -1,5 +1,6 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
+import 'package:dawak_3lyna/shared/components/Size_Config.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +18,7 @@ class NewRequest extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = UploadCubit.get(context);
+          SizeConfig().init(context);
           return WillPopScope(
             onWillPop: () async {
               await cubit.auth.signOut();
@@ -32,7 +34,7 @@ class NewRequest extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(20.0),
+                              padding: EdgeInsets.all(getProportionateScreenWidth(18)),
                               child: Form(
                                 key: cubit.formKey,
                                 child: Column(
@@ -42,8 +44,8 @@ class NewRequest extends StatelessWidget {
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyText1),
-                                    const SizedBox(
-                                      height: 15,
+                                    SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     defaultFormField(
                                       label: '${getLang(context, 'fullName')}',
@@ -59,8 +61,8 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                    SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     defaultFormField(
                                       label: '${getLang(context, 'phone')}',
@@ -76,8 +78,8 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                    SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     defaultFormField(
                                       label: '${getLang(context, 'age')}',
@@ -90,8 +92,8 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                   SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     defaultFormField(
                                       label: '${getLang(context, 'mn')}',
@@ -104,11 +106,11 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                   SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     Container(
-                                      height: 60,
+                                      height: getProportionateScreenHeight(58),
                                       decoration: BoxDecoration(
                                         border: Border.all(
                                           color: Colors.grey,
@@ -116,8 +118,8 @@ class NewRequest extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 5),
+                                        padding:  EdgeInsets.symmetric(
+                                            horizontal: getProportionateScreenWidth(5)),
                                         child: DropdownButton(
                                           underline: Container(),
                                           items:
@@ -138,87 +140,85 @@ class NewRequest extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                    SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
-                                    Container(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            '${getLang(context, 'prescription')}',
-                                          ),
-                                          const Spacer(),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          '${getLang(context, 'prescription')}',
+                                        ),
+                                        const Spacer(),
 //__________________________________ Change betwen Camera and Gallery___________
-                                          Row(
-                                            children: [
-                                              IconButton(
-                                                icon: const CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  child: Icon(
-                                                    Icons.camera_alt,
-                                                  ),
+                                        Row(
+                                          children: [
+                                            IconButton(
+                                              icon: const CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                child: Icon(
+                                                  Icons.camera_alt,
                                                 ),
-                                                onPressed: () async {
-                                                  showModalBottomSheet(
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        children: [
-                                                          ListTile(
-                                                            leading: const Icon(
-                                                              Icons.camera_alt,
-                                                            ),
-                                                            title: const Text(
-                                                              'Camera',
-                                                            ),
-                                                            onTap: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              cubit.pickImages(
-                                                                ImageSource
-                                                                    .camera,
-                                                              );
-                                                            },
-                                                          ),
-                                                          ListTile(
-                                                            leading: const Icon(
-                                                              Icons.image,
-                                                            ),
-                                                            title: const Text(
-                                                              'Gallery',
-                                                            ),
-                                                            onTap: () {
-                                                              Navigator.pop(
-                                                                context,
-                                                              );
-                                                              cubit.pickImages(
-                                                                ImageSource
-                                                                    .gallery,
-                                                              );
-                                                            },
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                },
                                               ),
-                                            ],
-                                          ),
+                                              onPressed: () async {
+                                                showModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      children: [
+                                                        ListTile(
+                                                          leading: const Icon(
+                                                            Icons.camera_alt,
+                                                          ),
+                                                          title: const Text(
+                                                            'Camera',
+                                                          ),
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                            cubit.pickImages(
+                                                              ImageSource
+                                                                  .camera,
+                                                            );
+                                                          },
+                                                        ),
+                                                        ListTile(
+                                                          leading: const Icon(
+                                                            Icons.image,
+                                                          ),
+                                                          title: const Text(
+                                                            'Gallery',
+                                                          ),
+                                                          onTap: () {
+                                                            Navigator.pop(
+                                                              context,
+                                                            );
+                                                            cubit.pickImages(
+                                                              ImageSource
+                                                                  .gallery,
+                                                            );
+                                                          },
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            ),
+                                          ],
+                                        ),
 //______________________________________________________________________________
-                                        ],
-                                      ),
+                                      ],
                                     ),
                                     Center(
                                       child: Text(
                                         cubit.imageName.split('/').last,
-                                        style: const TextStyle(fontSize: 12),
+                                        style:  TextStyle(fontSize: getProportionateScreenWidth(12)),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                    SizedBox(
+                                      height: getProportionateScreenHeight(17),
                                     ),
                                     defaultButton(
                                       function: () async {

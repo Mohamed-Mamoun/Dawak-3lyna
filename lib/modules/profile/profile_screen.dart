@@ -1,3 +1,4 @@
+import 'package:dawak_3lyna/shared/components/Size_Config.dart';
 import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -6,14 +7,15 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
+      padding:  EdgeInsets.symmetric(
+        vertical: getProportionateScreenHeight(20),
       ),
       child: Column(
         children: [
-          const SizedBox(
-            height: 90,
+           SizedBox(
+            height: getProportionateScreenHeight(150),
           ),
           ProfileMenu(
             text: "My Account",
@@ -63,14 +65,14 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 10,
+      padding: EdgeInsets.symmetric(
+        horizontal: getProportionateScreenWidth(20),
+        vertical: getProportionateScreenWidth(10),
       ),
       child: TextButton(
         style: TextButton.styleFrom(
           //  primary: kPrimaryColor,
-          padding: const EdgeInsets.all(10),
+          padding:  EdgeInsets.all(getProportionateScreenWidth(10)),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           backgroundColor: const Color(0xFFF5F6F9),
@@ -82,8 +84,8 @@ class ProfileMenu extends StatelessWidget {
               onPressed: press,
               icon: Icon(icon),
             ),
-            const SizedBox(
-              width: 20,
+             SizedBox(
+              width: getProportionateScreenWidth(20),
             ),
             Expanded(
               child: Text(text),

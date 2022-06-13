@@ -3,6 +3,7 @@ import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/cubit.dart';
 import 'package:dawak_3lyna/modules/doner/login/cubit/states.dart';
 import 'package:dawak_3lyna/modules/doner/register/register_screen.dart';
+import 'package:dawak_3lyna/shared/components/Size_Config.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/colors.dart';
@@ -20,6 +21,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return BlocProvider(
       create: (BuildContext context) => LoginCubit(),
       child: BlocConsumer<LoginCubit, LoginStates>(
@@ -62,33 +64,33 @@ class LoginScreen extends StatelessWidget {
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(getProportionateScreenWidth(18)),
                   child: Form(
                     key: formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                        '${getLang(context, 'login')}',
+                          '${getLang(context, 'login')}',
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
-                        const SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                           controller: emailController,
-                          hint:  '${getLang(context, 'Email')}',
+                          hint: '${getLang(context, 'Email')}',
                           type: TextInputType.emailAddress,
                           prefix: Icons.email_outlined,
                           isReadOnly: false,
                           validate: (String valaue) {
                             if (valaue.isEmpty) {
-                              return'${getLang(context, 'validate1')}';
+                              return '${getLang(context, 'validate1')}';
                             }
                           },
                         ),
-                        const SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                           controller: passwordController,
@@ -106,8 +108,8 @@ class LoginScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(
-                          height: 20.0,
+                        SizedBox(
+                          height: getProportionateScreenHeight(18),
                         ),
                         ConditionalBuilder(
                           condition: state is! LoginLoadingState,
@@ -127,25 +129,21 @@ class LoginScreen extends StatelessWidget {
                             child: CircularProgressIndicator(),
                           ),
                         ),
-                        const SizedBox(
-                          height: 15.0,
-                        ),
-                        const SizedBox(
-                          height: 15.0,
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                             Text(
+                            Text(
                               '${getLang(context, 'account?')}',
                             ),
                             TextButton(
                               onPressed: () {
-                                navigatTo(context, RegisterScreen());
+                                navigatTo(context, const RegisterScreen());
                               },
-                              child:  Text(
-                                '${getLang(context, 'REGISTER NOW')}'
-                              ),
+                              child:
+                                  Text('${getLang(context, 'REGISTER NOW')}'),
                             ),
                           ],
                         ),

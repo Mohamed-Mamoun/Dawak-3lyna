@@ -2,6 +2,7 @@ import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/doner/register/cubit/signup_cubit.dart';
 import 'package:dawak_3lyna/modules/verify_email/verify_email_screen.dart';
+import 'package:dawak_3lyna/shared/components/Size_Config.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,12 +12,15 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return BlocProvider(
       create: (BuildContext context) => SignupCubit(),
       child: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {},
         builder: (context, state) {
           final cubit = SignupCubit.get(context);
+          SizeConfig().init(context);
           return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
@@ -24,7 +28,7 @@ class RegisterScreen extends StatelessWidget {
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(getProportionateScreenWidth(18)),
                   child: Form(
                     key: cubit.formKey,
                     child: Column(
@@ -34,8 +38,8 @@ class RegisterScreen extends StatelessWidget {
                           '${getLang(context, 'REGISTER NOW')}',
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
-                        const SizedBox(
-                          height: 15,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                             hint: '${getLang(context, 'fullName')}',
@@ -51,8 +55,8 @@ class RegisterScreen extends StatelessWidget {
                                 return '${getLang(context, 'meg11')}';
                               }
                             }),
-                        const SizedBox(
-                          height: 15,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                           hint: '${getLang(context, 'Email')}',
@@ -66,8 +70,8 @@ class RegisterScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(
-                          height: 15,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                           hint: '${getLang(context, 'phone')}',
@@ -84,8 +88,8 @@ class RegisterScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(
-                          height: 15,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         defaultFormField(
                           hint: '${getLang(context, 'Password')}',
@@ -99,11 +103,11 @@ class RegisterScreen extends StatelessWidget {
                             }
                           },
                         ),
-                        const SizedBox(
-                          height: 15,
+                        SizedBox(
+                          height: getProportionateScreenHeight(17),
                         ),
                         Container(
-                          height: 60,
+                          height: getProportionateScreenHeight(58),
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: Colors.grey,
@@ -131,8 +135,8 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
-                          height: 20,
+                        SizedBox(
+                          height: getProportionateScreenHeight(18),
                         ),
                         defaultButton(
                           function: () async {
