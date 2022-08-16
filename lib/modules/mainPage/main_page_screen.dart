@@ -20,7 +20,7 @@ class MainPageScreen extends StatelessWidget {
             onWillPop: () async {
               return false;
             },
-            child: cubit.loading
+            child: cubit.loading.value
                 ? const Loading()
                 : Scaffold(
                     appBar: AppBar(
@@ -30,9 +30,7 @@ class MainPageScreen extends StatelessWidget {
                       child: Center(
                         child: Column(
                           children: [
-                            SizedBox(
-                              height: getProportionateScreenHeight(25)
-                            ),
+                            SizedBox(height: getProportionateScreenHeight(25)),
                             CircleAvatar(
                               backgroundImage: const NetworkImage(
                                   'https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/06/medical-logo.jpg'),
@@ -48,19 +46,15 @@ class MainPageScreen extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            SizedBox(
-                              height: getProportionateScreenHeight(23)
-                            ),
+                            SizedBox(height: getProportionateScreenHeight(23)),
                             defaultButton(
                               width: getProportionateScreenWidth(150),
                               function: () async {
-                               await cubit.signIn_Anounumasly(context);
+                                await cubit.signIn_Anounumasly(context);
                               },
                               text: "${getLang(context, "Patient")}",
                             ),
-                            SizedBox(
-                              height: getProportionateScreenHeight(23)
-                            ),
+                            SizedBox(height: getProportionateScreenHeight(23)),
                             defaultButton(
                               width: getProportionateScreenWidth(150),
                               function: () {

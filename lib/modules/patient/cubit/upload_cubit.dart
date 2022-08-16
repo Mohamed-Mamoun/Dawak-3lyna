@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -18,7 +19,7 @@ class UploadCubit extends Cubit<UploadState> {
 
   List lisItems = ['Khartoum', 'Omdourman', 'Bahri'];
   final auth = FirebaseAuth.instance;
-  bool loading = false;
+  ValueNotifier<bool> loading = ValueNotifier(false);
   String valuechoose;
   final storage = FirebaseStorage.instance;
   final picker = ImagePicker();
@@ -68,13 +69,13 @@ class UploadCubit extends Cubit<UploadState> {
 
   // Function To call Loading State
   void loadingOn() {
-    loading = true;
+    loading.value = true;
     emit(LoadingOnState());
   } // ****************************************************
 
   // Function To call Loaded State
   void loadingOf() {
-    loading = false;
+    loading.value = false;
     emit(LoadingOfState());
   } // ****************************************************
 
@@ -164,8 +165,10 @@ class UploadCubit extends Cubit<UploadState> {
               FirebaseAuth.instance.signInAnonymously().then(
                 (v) {
                   loadingOf();
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const NewRequest()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NewRequest()));
                 },
               )
             }

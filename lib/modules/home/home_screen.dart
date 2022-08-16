@@ -18,12 +18,12 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         final cubit = UploadCubit.get(context);
         SizeConfig().init(context);
-        return cubit.loading
+        return cubit.loading.value
             ? const Loading()
             : Center(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding:  EdgeInsets.all(getProportionateScreenWidth(18)),
+                    padding: EdgeInsets.all(getProportionateScreenWidth(18)),
                     child: Form(
                       key: cubit.formKey,
                       child: Column(
@@ -31,14 +31,14 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             '${getLang(context, 'md')}',
-                            style:  TextStyle(
+                            style: TextStyle(
                               fontSize: getProportionateScreenWidth(22),
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                           SizedBox(
-                          height: getProportionateScreenHeight(17),
-                        ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(17),
+                          ),
                           defaultFormField(
                             controller: cubit.nameController,
                             hint: '${getLang(context, 'mn')}',
@@ -51,9 +51,9 @@ class HomeScreen extends StatelessWidget {
                               }
                             },
                           ),
-                           SizedBox(
-                          height: getProportionateScreenHeight(17),
-                        ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(17),
+                          ),
                           defaultFormField(
                             controller: cubit.dateController,
                             hint: '${getLang(context, 'ex')}',
@@ -80,9 +80,9 @@ class HomeScreen extends StatelessWidget {
                               ;
                             },
                           ),
-                           SizedBox(
-                          height: getProportionateScreenHeight(17),
-                        ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(17),
+                          ),
                           defaultFormField(
                             controller: cubit.quantityController,
                             hint: '${getLang(context, 'q')}',
@@ -95,9 +95,9 @@ class HomeScreen extends StatelessWidget {
                               }
                             },
                           ),
-                           SizedBox(
-                          height: getProportionateScreenHeight(17),
-                        ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(17),
+                          ),
                           Container(
                             child: Row(
                               children: [
@@ -167,17 +167,18 @@ class HomeScreen extends StatelessWidget {
                           Center(
                             child: Text(
                               cubit.imageName.split('/').last,
-                              style:  TextStyle(fontSize: getProportionateScreenWidth(12)),
+                              style: TextStyle(
+                                  fontSize: getProportionateScreenWidth(12)),
                             ),
                           ),
-                           SizedBox(
-                          height: getProportionateScreenHeight(20),
-                        ),
+                          SizedBox(
+                            height: getProportionateScreenHeight(20),
+                          ),
                           defaultButton(
                             background: myColor,
                             radius: 15.0,
-                            function: () async{
-                          await cubit.donorRequestForm();
+                            function: () async {
+                              await cubit.donorRequestForm();
                             },
                             text: '${getLang(context, 'submit')}',
                           ),

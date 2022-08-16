@@ -25,7 +25,7 @@ class NewRequest extends StatelessWidget {
               cubit.imageName = '';
               return true;
             },
-            child: cubit.loading
+            child: cubit.loading.value
                 ? const Loading()
                 : Scaffold(
                     appBar: AppBar(),
@@ -34,7 +34,8 @@ class NewRequest extends StatelessWidget {
                         child: Column(
                           children: [
                             Padding(
-                              padding: EdgeInsets.all(getProportionateScreenWidth(18)),
+                              padding: EdgeInsets.all(
+                                  getProportionateScreenWidth(18)),
                               child: Form(
                                 key: cubit.formKey,
                                 child: Column(
@@ -92,7 +93,7 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                   SizedBox(
+                                    SizedBox(
                                       height: getProportionateScreenHeight(17),
                                     ),
                                     defaultFormField(
@@ -106,7 +107,7 @@ class NewRequest extends StatelessWidget {
                                         }
                                       },
                                     ),
-                                   SizedBox(
+                                    SizedBox(
                                       height: getProportionateScreenHeight(17),
                                     ),
                                     Container(
@@ -118,8 +119,9 @@ class NewRequest extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Padding(
-                                        padding:  EdgeInsets.symmetric(
-                                            horizontal: getProportionateScreenWidth(5)),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal:
+                                                getProportionateScreenWidth(5)),
                                         child: DropdownButton(
                                           underline: Container(),
                                           items:
@@ -214,7 +216,10 @@ class NewRequest extends StatelessWidget {
                                     Center(
                                       child: Text(
                                         cubit.imageName.split('/').last,
-                                        style:  TextStyle(fontSize: getProportionateScreenWidth(12)),
+                                        style: TextStyle(
+                                            fontSize:
+                                                getProportionateScreenWidth(
+                                                    12)),
                                       ),
                                     ),
                                     SizedBox(
