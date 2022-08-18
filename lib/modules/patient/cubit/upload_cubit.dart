@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:dawak_3lyna/models/doner_model.dart';
+import 'package:dawak_3lyna/models/patient_model.dart';
 import 'package:dawak_3lyna/modules/patient/new_request_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,8 +39,9 @@ class UploadCubit extends Cubit<UploadState> {
   final dateController = TextEditingController();
   final quantityController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final patient = FirebaseFirestore.instance.collection('patient');
-  var downloadUrl;
+  final patientCollection = FirebaseFirestore.instance.collection('patient');
+  final donersCollection = FirebaseFirestore.instance.collection('Doners');
+  String downloadUrl;
 
   Future<bool> checkInternetConnnection() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
@@ -62,8 +65,7 @@ class UploadCubit extends Cubit<UploadState> {
   Future uploudImage() async {
     var ref = storage.ref().child('images/$imageName');
     await ref.putFile(image);
-    downloadUrl = ref.getDownloadURL();
-
+    await ref.getDownloadURL().then((value) => downloadUrl = value);
     emit(UploadImageState());
   } // ****************************************************
 
@@ -85,22 +87,14 @@ class UploadCubit extends Cubit<UploadState> {
     emit(ChangeValueState());
   } // ****************************************************
 
-  // Function To Save The Patient Data To FireStore
-  Future saveData(
-      TextEditingController name,
-      TextEditingController number,
-      TextEditingController age,
-      TextEditingController medicineName,
-      String city,
-      var imageUrl) async {
-    await patient.add({
-      'Name': name.text,
-      'Phone_Number': number.text,
-      'Age': age.text,
-      'Medicine_Name': medicineName.text,
-      'City': city,
-      'Image_url': image.toString()
-    });
+  // Function To Save Patient Data To Database
+  Future savePatientData(PatientModel patientModel) async {
+    await patientCollection.add(patientModel.toJson());
+  } // ****************************************************
+
+  // Function To Save Doner Data To Database
+  Future saveDonerData(DonerModel donerModel) async {
+    await donersCollection.add(donerModel.toJson());
   } // ****************************************************
 
   // Function To Validate The Patient form and upload
@@ -127,29 +121,31 @@ class UploadCubit extends Cubit<UploadState> {
       try {
         loadingOn();
         await uploudImage();
-        await saveData(
-          name,
-          phoneNumber,
-          age,
-          medicineName,
-          valuechoose,
-          downloadUrl,
-        ).whenComplete(
-          () => {
-            loadingOf(),
+        await savePatientData(PatientModel(
+                name: name.text,
+                phoneNumber: phoneNumber.text,
+                age: int.parse(age.text),
+                medicineName: medicineName.text,
+                city: valuechoose.toString(),
+                imageUrl: downloadUrl))
+            .whenComplete(
+          () {
+            loadingOf();
             showToast(
               text: 'Your Request uploaded Successfully',
               state: ToastStates.SUCCESS,
-            ),
-            name.clear(),
-            phoneNumber.clear(),
-            age.clear(),
-            medicineName.clear(),
-            valuechoose = null,
-            imageName = '',
+            );
+            name.clear();
+            phoneNumber.clear();
+            age.clear();
+            medicineName.clear();
+            valuechoose = null;
+            imageName = '';
           },
         );
       } catch (e) {
+        loadingOf();
+        print(e.toString());
         showToast(
             text: 'Check your Internet Connection', state: ToastStates.ERROR);
       }
@@ -182,5 +178,45 @@ class UploadCubit extends Cubit<UploadState> {
         });
   }
 
-  donorRequestForm() {}
+  // Function To Validate The Doner form and upload
+  donorRequestForm() async {
+    if (!formKey.currentState.validate()) {
+      return false;
+    }
+    if (imageName == '') {
+      showToast(
+        text: 'Please Pick Prescription',
+        state: ToastStates.ERROR,
+      );
+      return false;
+    } else {
+      try {
+        loadingOn();
+        await uploudImage();
+        await saveDonerData(DonerModel(
+                medicineName: nameController.text,
+                date: dateController.text,
+                qantity: int.parse(quantityController.text),
+                imageUrl: downloadUrl))
+            .whenComplete(
+          () {
+            loadingOf();
+            showToast(
+              text: 'Your Request uploaded Successfully',
+              state: ToastStates.SUCCESS,
+            );
+            nameController.clear();
+            dateController.clear();
+            quantityController.clear();
+            imageName = '';
+          },
+        );
+      } catch (e) {
+        loadingOf();
+        print(e.toString());
+        showToast(
+            text: 'Check your Internet Connection', state: ToastStates.ERROR);
+      }
+    }
+  }
 }

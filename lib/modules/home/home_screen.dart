@@ -98,71 +98,69 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(
                             height: getProportionateScreenHeight(17),
                           ),
-                          Container(
-                            child: Row(
-                              children: [
-                                Text(
-                                  '${getLang(context, 'prescription')}',
-                                ),
-                                const Spacer(),
+                          Row(
+                            children: [
+                              Text(
+                                '${getLang(context, 'prescription')}',
+                              ),
+                              const Spacer(),
 //__________________________________ Change betwen Camera and Gallery___________
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      icon: const CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        child: Icon(
-                                          Icons.camera_alt,
-                                        ),
+                              Row(
+                                children: [
+                                  IconButton(
+                                    icon: const CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: Icon(
+                                        Icons.camera_alt,
                                       ),
-                                      onPressed: () async {
-                                        showModalBottomSheet(
-                                          context: context,
-                                          builder: (context) {
-                                            return Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                ListTile(
-                                                  leading: const Icon(
-                                                    Icons.camera_alt,
-                                                  ),
-                                                  title: const Text(
-                                                    'Camera',
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.pop(context);
-                                                    cubit.pickImages(
-                                                      ImageSource.camera,
-                                                    );
-                                                  },
-                                                ),
-                                                ListTile(
-                                                  leading: const Icon(
-                                                    Icons.image,
-                                                  ),
-                                                  title: const Text(
-                                                    'Gallery',
-                                                  ),
-                                                  onTap: () {
-                                                    Navigator.pop(
-                                                      context,
-                                                    );
-                                                    cubit.pickImages(
-                                                      ImageSource.gallery,
-                                                    );
-                                                  },
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      },
                                     ),
-                                  ],
-                                ),
+                                    onPressed: () async {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              ListTile(
+                                                leading: const Icon(
+                                                  Icons.camera_alt,
+                                                ),
+                                                title: const Text(
+                                                  'Camera',
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pop(context);
+                                                  cubit.pickImages(
+                                                    ImageSource.camera,
+                                                  );
+                                                },
+                                              ),
+                                              ListTile(
+                                                leading: const Icon(
+                                                  Icons.image,
+                                                ),
+                                                title: const Text(
+                                                  'Gallery',
+                                                ),
+                                                onTap: () {
+                                                  Navigator.pop(
+                                                    context,
+                                                  );
+                                                  cubit.pickImages(
+                                                    ImageSource.gallery,
+                                                  );
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
 //______________________________________________________________________________
-                              ],
-                            ),
+                            ],
                           ),
                           Center(
                             child: Text(

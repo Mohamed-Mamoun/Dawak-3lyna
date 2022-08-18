@@ -1,6 +1,6 @@
 class PatientModel {
-  String name, medicineName, city, imageUrl;
-  int phoneNumber, age;
+  String name, medicineName, city, imageUrl, phoneNumber;
+  int age;
 
   PatientModel(
       {this.name,
