@@ -1,5 +1,3 @@
-
-
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
@@ -13,7 +11,7 @@ void printFullText(String text) {
 void singOut(context) {
   CacheHelper.removeData(key: 'uId').then((value) {
     if (value) {
-      navigatAndFinish(context, MainPageScreen());
+      navigatAndFinish(context, const MainPageScreen());
     }
   });
 }

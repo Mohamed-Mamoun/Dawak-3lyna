@@ -4,7 +4,7 @@ import 'package:dawak_3lyna/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../localizations/applocal.dart';
+import '../../shared/network/local/cache_helper.dart';
 
 class BoardingModal {
   final String image;
@@ -50,16 +50,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   ];
 
   bool isLast = false;
-  // void submit() {
-  //   CacheHelper.saveData(
-  //     key: 'onBoarding',
-  //     value: true,
-  //   ).then((value) {
-  //     if (value) {
-  //       navigatAndFinish(context, LoginScreen());
-  //     }
-  //   });
-  // }
+  void submit() {
+    CacheHelper.saveData(
+      key: 'onBoarding',
+      value: true,
+    ).then((value) {
+      if (value) {
+        navigatAndFinish(context, const MainPageScreen());
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,10 +71,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         actions: [
           defaultTextButton(
             function: () {
-              navigatAndFinish(
-                context,
-                MainPageScreen(),
-              );
+              submit();
             },
             text: 'تخطى',
           ),
@@ -126,10 +123,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   backgroundColor: myColor,
                   onPressed: () {
                     if (isLast) {
-                      navigatAndFinish(
-                        context,
-                        MainPageScreen(),
-                      );
+                      submit();
                     } else {
                       boardController.nextPage(
                         duration: const Duration(milliseconds: 800),

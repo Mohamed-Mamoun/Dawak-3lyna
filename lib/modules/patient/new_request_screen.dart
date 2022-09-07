@@ -227,7 +227,7 @@ class NewRequest extends StatelessWidget {
                                     ),
                                     defaultButton(
                                       function: () async {
-                                        await cubit.validate_and_upload();
+                                        await cubit.validateAndUpload();
                                       },
                                       text: '${getLang(context, 'submit')}',
                                       radius: 15,

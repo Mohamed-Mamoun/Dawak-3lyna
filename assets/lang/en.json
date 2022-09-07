@@ -38,7 +38,13 @@
     "meg4" : "Please Enter your password",
     "exMeg": "please enter your Expiration",
     "qMeg": "please enter your Quantity",
-    "prescription": "Attach the prescription"
+    "prescription": "Attach the prescription",
+    "log_out": "Log Out",
+    "log_out_message": "Are you sure to exit the app ?",
+    "yes" : "Yes",
+    "no" : "No",
+    "my_account" : "My Account",
+   "about_us" : "About Us"
 
 
 }

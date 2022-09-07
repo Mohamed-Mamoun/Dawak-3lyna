@@ -98,7 +98,7 @@ class UploadCubit extends Cubit<UploadState> {
   } // ****************************************************
 
   // Function To Validate The Patient form and upload
-  Future validate_and_upload() async {
+  Future validateAndUpload() async {
     if (!formKey.currentState.validate()) {
       return false;
     }
@@ -153,7 +153,7 @@ class UploadCubit extends Cubit<UploadState> {
   }
 
   // Function To Sign in without account
-  Future signIn_Anounumasly(BuildContext context) async {
+  Future signInAnounumasly(BuildContext context) async {
     loadingOn();
     checkInternetConnnection().then((value) => {
           if (value == true)

@@ -2,9 +2,8 @@ import 'package:dawak_3lyna/layout/cubit/cubit.dart';
 import 'package:dawak_3lyna/layout/layout_screen.dart';
 import 'package:dawak_3lyna/modules/Dashboard/cubit/dashboard_cubit.dart';
 import 'package:dawak_3lyna/modules/mainPage/main_page_screen.dart';
+import 'package:dawak_3lyna/modules/on_boarding/on_boarding_screen.dart';
 import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
-import 'package:dawak_3lyna/shared/bolc_observer.dart';
-import 'package:dawak_3lyna/shared/components/constants.dart';
 import 'package:dawak_3lyna/shared/network/local/cache_helper.dart';
 import 'package:dawak_3lyna/shared/styles/app_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,15 +21,18 @@ void main() async {
   Widget widget;
   //MyBlocObserver();
   await CacheHelper.init();
-
-  uId = CacheHelper.getData(key: 'uId');
+  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
+  String uId = CacheHelper.getData(key: 'uId');
 
   // print(uId);
 
-  if (uId != null) {
-    widget = const LayoutScreen();
+  if (onBoarding != null) {
+    if (uId != null)
+      widget = LayoutScreen();
+    else
+      widget = MainPageScreen();
   } else {
-    widget =  MainPageScreen();
+    widget = OnBoardingScreen();
   }
 
   runApp(MyApp(
@@ -65,14 +67,14 @@ class MyApp extends StatelessWidget {
             title: 'Dawak 3lyna',
             theme: lightTheme,
             home: startWidget,
-            localizationsDelegates: [
+            localizationsDelegates: const [
               AppLocale.delegate,
               GlobalMaterialLocalizations.delegate,
               GlobalWidgetsLocalizations.delegate
             ],
-            supportedLocales: [
-              const Locale("en", ""),
-              const Locale("ar", ""),
+            supportedLocales: const [
+              Locale("en", ""),
+              Locale("ar", ""),
             ],
             locale: const Locale("ar", ""),
             localeResolutionCallback: (currentLang, supportLang) {
@@ -92,5 +94,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class ChangeLang with ChangeNotifier {}

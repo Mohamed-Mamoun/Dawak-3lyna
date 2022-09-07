@@ -19,14 +19,13 @@ class HomeCubit extends Cubit<HomeStates> {
 
   final auth = FirebaseAuth.instance;
 
-
   List<Widget> screens = [
-    HomeScreen(),
-     const RequesrScreen(),
+    const HomeScreen(),
+    const RequesrScreen(),
     const ProfileScreen()
   ];
 
-  List<Widget> dashboard_screens = [
+  List<Widget> dashboardScreens = [
     const Donors(),
     const Patients(),
   ];

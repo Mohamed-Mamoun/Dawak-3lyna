@@ -1,7 +1,6 @@
 import 'package:dawak_3lyna/localizations/applocal.dart';
 import 'package:dawak_3lyna/modules/doner/login/login_screen.dart';
 import 'package:dawak_3lyna/modules/patient/cubit/upload_cubit.dart';
-import 'package:dawak_3lyna/modules/patient/new_request_screen.dart';
 import 'package:dawak_3lyna/shared/components/Size_Config.dart';
 import 'package:dawak_3lyna/shared/components/components.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +49,7 @@ class MainPageScreen extends StatelessWidget {
                             defaultButton(
                               width: getProportionateScreenWidth(150),
                               function: () async {
-                                await cubit.signIn_Anounumasly(context);
+                                await cubit.signInAnounumasly(context);
                               },
                               text: "${getLang(context, "Patient")}",
                             ),

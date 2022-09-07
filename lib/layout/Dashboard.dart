@@ -29,7 +29,7 @@ class Dashboard_Layout extends StatelessWidget {
               ),
              
             ),
-            body: cubit.dashboard_screens[cubit.currentIndex],
+            body: cubit.dashboardScreens[cubit.currentIndex],
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: cubit.currentIndex,
               onTap: (int index) {
